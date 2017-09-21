@@ -67,7 +67,13 @@ module ChainAdapter
     # 用于充值，自己添加的属性，数字是10进制的（原始的是字符串形式的16进制）
     def gettransaction(txid)
       tx = get_transaction_by_hash(txid)
-      return nil unless (tx && tx['blockNumber']) # 未上链的直接返回nil
+      return nil unless (tx && tx['blockNumber']) # 未上链的直接返回nil，有没有可能之后又上链了？
+
+      receipt = eth_get_transaction_receipt(txhash)
+      return nil if out_of_gas?(tx, receipt)
+
+      # 把回执也作为tx的一部分返回
+      tx['receipt'] = receipt
 
       # 确认数
       number = block_number
@@ -97,6 +103,9 @@ module ChainAdapter
       return tx
     end
 
+    def out_of_gas?(tx, receipt)
+      tx['gas'] === receipt['gasUsed'] # out of gas，交易失败
+    end
 
   end
 end

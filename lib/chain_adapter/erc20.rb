@@ -36,7 +36,7 @@ module ChainAdapter
       return nil unless tx
 
       # 看看这个交易实际有没有成功
-      return nil unless transfer_succeeded?(txid)
+      return nil unless has_transfer_event_log?(tx['receipt'])
 
       # 数量 和 地址
       data = tx['input'] || tx['raw']
@@ -54,15 +54,9 @@ module ChainAdapter
       return tx
     end
 
-    def transfer_succeeded?(txhash)
-      receipt = eth_get_transaction_receipt(txhash)
-      return false if hex_to_dec(receipt['gasUsed']) === config[:gas_limit] # out of gas，交易失败
-      return has_transfer_event_log?(receipt)
-    end
-
     def has_transfer_event_log?(receipt)
       receipt['logs'].each do |log|
-        if log['address'] && log['address'] == config[:token_contract_address].downcase && log['topics'][0] == '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
+        if log['address'] && log['address'] == config[:token_contract_address].downcase && log['topics'].length = 3 && log['topics'][0] == '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
           return true
         end
       end
