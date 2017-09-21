@@ -65,6 +65,7 @@ module ChainAdapter
     end
 
     # 用于充值，自己添加的属性，数字是10进制的（原始的是字符串形式的16进制）
+    # 严格判断
     def gettransaction(txid)
       tx = get_transaction_by_hash(txid)
       return nil unless (tx && tx['blockNumber']) # 未上链的直接返回nil，有没有可能之后又上链了？
