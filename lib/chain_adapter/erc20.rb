@@ -35,32 +35,27 @@ module ChainAdapter
       tx = super(txid)
       return nil unless tx
 
-      # 看看这个交易实际有没有成功
-      return nil unless has_transfer_event_log?(tx['receipt'])
-
       # 数量 和 地址
       data = tx['input'] || tx['raw']
-      matched = /(0{24}[abcdef0-9]{40})(0{24}[abcdef0-9]{40})/.match(data)
-      return nil unless matched
-      tx['details'] = [
-          {
-              'account' => 'payment',
-              'category' => 'receive',
-              'amount' => matched[2].to_i(16) / 10**config[:token_decimals],
-              'address' => "0x#{matched[1][24 .. matched[1].length-1]}"
-          }
-      ]
+      input = extract_input(data)
+      from = padding(tx['from'])
+      to = '0x' + input[:params][0]
+      value = '0x' + input[:params][1]
+
+      # 看看这个交易实际有没有成功
+      return nil unless has_transfer_event_log?(tx['receipt'], from, to, value)
+
+      # 填充交易所需要的数据
+      # tx['details'] = [
+      #     {
+      #         'account' => 'payment',
+      #         'category' => 'receive',
+      #         'amount' => matched[2].to_i(16) / 10**config[:token_decimals],
+      #         'address' => "0x#{matched[1][24 .. matched[1].length-1]}"
+      #     }
+      # ]
 
       return tx
-    end
-
-    def has_transfer_event_log?(receipt)
-      receipt['logs'].each do |log|
-        if log['address'] && log['address'] == config[:token_contract_address].downcase && log['topics'].length = 3 && log['topics'][0] == '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
-          return true
-        end
-      end
-      return false
     end
 
   end

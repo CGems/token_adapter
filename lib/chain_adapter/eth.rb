@@ -104,9 +104,37 @@ module ChainAdapter
       return tx
     end
 
-    def out_of_gas?(tx, receipt)
-      tx['gas'] === receipt['gasUsed'] # out of gas，交易失败
+    def wallet_collect(wallet_address, token_address, amount, token_decimals)
+      function_signature = '6ea056a9' # Ethereum::Function.calc_id('sweep(address,uint256)')
+
+      amount_in_wei = (amount*(10**token_decimals)).to_i
+      data = "0x#{function_signature}#{padding(token_address)}#{padding(dec_to_hex(amount_in_wei))}"
+
+      gas_limit = config[:collect_gas_limit] || config[:gas_limit] || 200_000
+      gas_price = config[:collect_gas_price] || config[:gas_price] || 20_000_000_000
+      rawtx = generate_raw_transaction(config[:exchange_address_priv],
+                                       nil,
+                                       data,
+                                       gas_limit,
+                                       gas_price,
+                                       wallet_address)
+
+      return nil unless rawtx
+
+      txhash = send_raw_transaction(rawtx)
+
+      return nil if hex_to_dec(txhash) == 0
+      return txhash
     end
 
+    # from to value 以16进制字符串表示, 64位
+    def has_transfer_event_log?(receipt, from, to, value)
+      topics = [
+          '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+          from,
+          to
+      ]
+      return has_event_log?(receipt, config[:token_contract_address], topics, value)
+    end
   end
 end

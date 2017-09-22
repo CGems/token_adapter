@@ -3,9 +3,48 @@ module ChainAdapter
   module EthHelper
     using PatternMatch
 
+    def out_of_gas?(tx, receipt)
+      tx['gas'] === receipt['gasUsed'] # out of gas，交易失败
+    end
+
+    def has_event_log?(receipt, address, topics, data)
+      logs = receipt['logs']
+      return false unless logs
+
+      logs.each do |log|
+        return true if log_equal?(log, address, topics, data)
+      end
+
+      return false
+    end
+
+    def extract_input(data)
+      method_id = data[0 .. 9]
+      params = data[10 .. data.length-1].scan /[abcdef0-9]{64}/
+      {method_id: method_id, params: params}
+    end
+
+    def log_equal?(log, address, topics, data)
+      return false unless log['address']
+
+      return false unless log['address'] == address.downcase
+
+      return true if topics.length === 0
+
+      return false unless (log['topics'] && log['topics'].length === topics.length)
+
+      log['topics'].each_with_index do |topic, i|
+        return false unless topic === topics[i]
+      end
+
+      return false unless log['data'] === data
+
+      return true
+    end
+
     # nil or rawtx
     def generate_raw_transaction(priv, value, data, gas_limit, gas_price, to = nil)
-      key = Eth::Key.new priv
+      key = ::Eth::Key.new priv
       transaction_count = get_transaction_count(key.address)
       return nil unless transaction_count >= 0
 
@@ -20,7 +59,7 @@ module ChainAdapter
       args[:value] = (value * 10**18).to_i if value
       args[:data] = data if data
       args[:to] = to if to
-      tx = Eth::Tx.new(args)
+      tx = ::Eth::Tx.new(args)
       tx.sign key
       tx.hex
     end
