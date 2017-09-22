@@ -54,7 +54,7 @@ module ChainAdapter
 
     # nil or rawtx
     def generate_raw_transaction(priv, value, data, gas_limit, gas_price, to = nil)
-      key = ::Eth::Key.new priv
+      key = ::Eth::Key.new priv: priv
       transaction_count = get_transaction_count(key.address)
       return nil unless transaction_count >= 0
 
