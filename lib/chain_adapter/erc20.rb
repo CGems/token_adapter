@@ -46,14 +46,14 @@ module ChainAdapter
       return nil unless has_transfer_event_log?(tx['receipt'], from, to, value)
 
       # 填充交易所需要的数据
-      # tx['details'] = [
-      #     {
-      #         'account' => 'payment',
-      #         'category' => 'receive',
-      #         'amount' => matched[2].to_i(16) / 10**config[:token_decimals],
-      #         'address' => "0x#{matched[1][24 .. matched[1].length-1]}"
-      #     }
-      # ]
+      tx['details'] = [
+          {
+              'account' => 'payment',
+              'category' => 'receive',
+              'amount' => value.to_i(16) / 10**config[:token_decimals],
+              'address' => "0x#{input[:params][0][24 .. input[:params][0].length-1]}"
+          }
+      ]
 
       return tx
     end
