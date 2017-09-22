@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88558be4-734a-4775-be8a-3fdc7e12890c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/chain_adapter.iml" afterPath="$PROJECT_DIR$/.idea/chain_adapter.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chain_adapter.gemspec" afterPath="$PROJECT_DIR$/chain_adapter.gemspec" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/chain_adapter/version.rb" afterPath="$PROJECT_DIR$/lib/chain_adapter/version.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -262,7 +259,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1505977397207</updated>
-      <workItem from="1505977398894" duration="26416000" />
+      <workItem from="1505977398894" duration="26429000" />
     </task>
     <task id="LOCAL-00001" summary="ss">
       <created>1505988005091</created>
@@ -341,11 +338,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506059184731</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="0.1.8">
+      <created>1506062782934</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1506062782934</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26416000" />
+    <option name="totallyTimeSpent" value="26429000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1023" extended-state="6" />
@@ -432,7 +436,8 @@
     <MESSAGE value="add require 'eth'" />
     <MESSAGE value="0.1.6" />
     <MESSAGE value="0.1.7" />
-    <option name="LAST_COMMIT_MESSAGE" value="0.1.7" />
+    <MESSAGE value="0.1.8" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.1.8" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
