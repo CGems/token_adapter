@@ -27,6 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "pattern-match", "1.0.1"
   spec.add_dependency "eth", "0.4.4"
   spec.add_dependency "etherscan", "0.1.2"
-  spec.add_dependency "active_hash", "1.5.2"
 
 end
