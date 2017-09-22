@@ -7,6 +7,16 @@ module ChainAdapter
       tx['gas'] === receipt['gasUsed'] # out of gas，交易失败
     end
 
+    # from to value 以16进制字符串表示, 64位
+    def has_transfer_event_log?(receipt, from, to, value)
+      topics = [
+          '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+          from,
+          to
+      ]
+      return has_event_log?(receipt, config[:token_contract_address], topics, value)
+    end
+
     def has_event_log?(receipt, address, topics, data)
       logs = receipt['logs']
       return false unless logs

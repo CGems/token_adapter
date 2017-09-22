@@ -21,8 +21,8 @@ module ChainAdapter
     def getnewaddress(account, passphase)
       priv = config[:exchange_address_priv]
       address_contract_address = config[:contract_address]
-      gas_limit = config[:gas_limit]
-      gas_price = config[:gas_price]
+      gas_limit = config[:newaddress_gas_limit] || config[:gas_limit] || 200_000
+      gas_price = config[:newaddress_gas_price] || config[:gas_price] || 20_000_000_000
 
       # 生成raw tx
       data = '0xa9b1d507' # Ethereum::Function.calc_id('makeWallet()')
@@ -53,11 +53,13 @@ module ChainAdapter
 
     # 用户提币
     def sendtoaddress(address, amount)
+      gas_limit = config[:transfer_gas_limit] || config[:gas_limit] || 200_000
+      gas_price = config[:transfer_gas_price] || config[:gas_price] || 20_000_000_000
       rawtx = generate_raw_transaction(config[:exchange_address_priv],
                                        amount,
                                        nil,
-                                       config[:gas_limit],
-                                       config[:gas_price],
+                                       gas_limit,
+                                       gas_price,
                                        address)
       return nil unless rawtx
 
@@ -127,14 +129,6 @@ module ChainAdapter
       return txhash
     end
 
-    # from to value 以16进制字符串表示, 64位
-    def has_transfer_event_log?(receipt, from, to, value)
-      topics = [
-          '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
-          from,
-          to
-      ]
-      return has_event_log?(receipt, config[:token_contract_address], topics, value)
-    end
+
   end
 end
