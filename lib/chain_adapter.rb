@@ -1,10 +1,12 @@
 require 'etherscan'
+require 'eth'
 require "chain_adapter/version"
 require "chain_adapter/eth_helper"
 require "chain_adapter/base"
 require "chain_adapter/eth"
 require "chain_adapter/erc20"
 require "chain_adapter/atm"
+
 
 module ChainAdapter
   class << self
