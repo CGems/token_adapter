@@ -106,6 +106,10 @@ module ChainAdapter
       return tx
     end
 
+    def validateaddress(address)
+      {isvalid: true, ismine: false}
+    end  
+
     def wallet_collect(wallet_address, token_address, amount, token_decimals)
       function_signature = '6ea056a9' # Ethereum::Function.calc_id('sweep(address,uint256)')
 
