@@ -108,7 +108,11 @@ module ChainAdapter
 
     def validateaddress(address)
       {isvalid: true, ismine: false}
-    end  
+    end
+
+    def settxfee(fee)
+      # do nothing
+    end
 
     def wallet_collect(wallet_address, token_address, amount, token_decimals)
       function_signature = '6ea056a9' # Ethereum::Function.calc_id('sweep(address,uint256)')
@@ -132,6 +136,7 @@ module ChainAdapter
       return nil if hex_to_dec(txhash) == 0
       return txhash
     end
+
 
 
   end
