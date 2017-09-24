@@ -1,28 +1,33 @@
 require 'etherscan'
+require 'infura'
 require 'eth'
-require "chain_adapter/version"
-require "chain_adapter/eth_helper"
-require "chain_adapter/base"
-require "chain_adapter/eth"
-require "chain_adapter/erc20"
-require "chain_adapter/atm"
+require 'pattern-match'
 
 
 module ChainAdapter
   class << self
-    attr_reader :logger
-
-    def logger=(logger)
-      @logger = logger
-      Etherscan.logger = logger
-    end
+    attr_accessor :logger
   end
 
   class JSONRPCError < RuntimeError; end
   class ConnectionRefusedError < StandardError; end
 end
 
-Etherscan.logger = Logger.new(STDOUT)
-Etherscan.logger.level = Logger::DEBUG
+
+require "chain_adapter/version"
+require "chain_adapter/base"
+require "chain_adapter/eth/base_provider"
+require "chain_adapter/eth/etherscan_provider"
+require "chain_adapter/eth/infura_provider"
+require "chain_adapter/eth/rpc_provider"
+require "chain_adapter/eth/eth"
+require "chain_adapter/eth/erc20"
+require "chain_adapter/eth/atm"
+require "chain_adapter/btc"
+require "chain_adapter/ltc"
+require "chain_adapter/zec"
+require "chain_adapter/doge"
+
+
 
 
