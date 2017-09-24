@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "chain_adapter/version"
+require "token_adapter/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "chain_adapter"
-  spec.version       = ChainAdapter::VERSION
+  spec.name          = "token_adapter"
+  spec.version       = TokenAdapter::VERSION
   spec.authors       = ["wuminzhe"]
   spec.email         = ["wuminzhe@gmail.com"]
 
-  spec.summary       = "A adapter for different block chain"
-  spec.description   = "A adapter for different block chain"
+  spec.summary       = "An adapter of different tokens for exchange"
+  spec.description   = "An adapter of different tokens for exchange"
   spec.homepage      = "https://github.com/wuminzhe"
   spec.license       = "MIT"
 

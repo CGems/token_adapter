@@ -1,5 +1,6 @@
-module ChainAdapter
+module TokenAdapter
   class Btc < Base
+    include TokenAdapter::JsonRpc
 
     def initialize(config)
       super(config)
@@ -33,11 +34,11 @@ module ChainAdapter
 
     def call2(name, *args)
       post_body = prepare_post_body(name, *args)
-      ChainAdapter.logger.debug post_body
+      TokenAdapter.logger.debug post_body
       resp_body = send_post_request(post_body)
-      ChainAdapter.logger.debug resp_body
+      TokenAdapter.logger.debug resp_body
       resp_body = JSON.parse(resp_body)
-      raise ChainAdapter::JSONRPCError, resp_body['error'] if resp_body['error']
+      raise TokenAdapter::JSONRPCError, resp_body['error'] if resp_body['error']
       resp_body.deep_symbolize_keys if resp_body.is_a? Hash
     rescue JSON::ParserError => e
       resp_body
@@ -51,10 +52,10 @@ module ChainAdapter
       request.body = post_body
       http.request(request).body
     rescue Errno::ECONNREFUSED => e
-      raise ChainAdapter::ConnectionRefusedError
+      raise TokenAdapter::ConnectionRefusedError
     rescue => e
-      ChainAdapter.logger.error e.message
-      ChainAdapter.logger.error e.backtrace.join("\n")
+      TokenAdapter.logger.error e.message
+      TokenAdapter.logger.error e.backtrace.join("\n")
     end
 
     def prepare_post_body(method, *args)

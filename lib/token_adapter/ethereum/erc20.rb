@@ -1,5 +1,5 @@
-module ChainAdapter
-  module Eth
+module TokenAdapter
+  module Ethereum
     class Erc20 < Eth
 
       def initialize(config)

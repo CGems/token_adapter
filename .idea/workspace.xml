@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="88558be4-734a-4775-be8a-3fdc7e12890c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/chain_adapter/eth/rpc_provider.rb" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/chain_adapter/atm.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/chain_adapter/erc20.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/chain_adapter/eth.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/chain_adapter/eth_helper.rb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/chain_adapter.iml" afterPath="$PROJECT_DIR$/.idea/chain_adapter.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chain_adapter.gemspec" afterPath="$PROJECT_DIR$/chain_adapter.gemspec" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/chain_adapter.rb" afterPath="$PROJECT_DIR$/lib/chain_adapter.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/chain_adapter/version.rb" afterPath="$PROJECT_DIR$/lib/chain_adapter/version.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/chain_adapter_test.rb" afterPath="$PROJECT_DIR$/test/chain_adapter_test.rb" />
-    </list>
+    <list default="true" id="88558be4-734a-4775-be8a-3fdc7e12890c" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,107 +11,108 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/chain_adapter@test_eth_getbalance__chain_adapter.coverage" NAME="test_eth_getbalance: chain_adapter Coverage Results" MODIFIED="1506224627724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="chain_adapter" />
-    <SUITE FILE_PATH="coverage/chain_adapter@Run_test__chain_adapter_test___chain_adapter.coverage" NAME="Run test 'chain_adapter_test': chain_adapter Coverage Results" MODIFIED="1506222435270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="chain_adapter" />
+    <SUITE FILE_PATH="coverage/chain_adapter@Run_test__chain_adapter_test___chain_adapter.coverage" NAME="Run test 'chain_adapter_test': chain_adapter Coverage Results" MODIFIED="1506264455047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../token_adapter" MODULE_NAME="chain_adapter" />
     <SUITE FILE_PATH="coverage/chain_adapter@test_atm_getbalace__chain_adapter.coverage" NAME="test_atm_getbalace: chain_adapter Coverage Results" MODIFIED="1506224647030" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="chain_adapter" />
+    <SUITE FILE_PATH="coverage/chain_adapter@test_helper.coverage" NAME="test_helper Coverage Results" MODIFIED="1506264084353" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../token_adapter/test" MODULE_NAME="chain_adapter" />
     <SUITE FILE_PATH="coverage/chain_adapter@test_atm_sendtoaddress__chain_adapter.coverage" NAME="test_atm_sendtoaddress: chain_adapter Coverage Results" MODIFIED="1506224496390" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="chain_adapter" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="chain_adapter.gemspec" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/chain_adapter.gemspec">
+      <file leaf-file-name="token_adapter.gemspec" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../token_adapter/token_adapter.gemspec">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chain_adapter_test.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/chain_adapter_test.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chain_adapter.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/chain_adapter.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="26" column="27" lean-forward="false" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="etherscan_provider.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth/etherscan_provider.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="10" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gemfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rpc_provider.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth/rpc_provider.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="22" />
+            <state relative-caret-position="111">
+              <caret line="12" column="58" lean-forward="false" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="eth.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth/eth.rb">
+        <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/eth.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+            <state relative-caret-position="209">
+              <caret line="11" column="46" lean-forward="false" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="infura_provider.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth/infura_provider.rb">
+      <file leaf-file-name="token_adapter_test.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../token_adapter/test/token_adapter_test.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
-              <caret line="45" column="9" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="45" selection-end-column="9" />
+            <state relative-caret-position="347">
+              <caret line="34" column="18" lean-forward="false" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="erc20.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth/erc20.rb">
+      <file leaf-file-name="token_adapter.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="32" column="32" lean-forward="false" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="32" />
+            <state relative-caret-position="266">
+              <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base_provider.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth/base_provider.rb">
+      <file leaf-file-name="json_rpc.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/json_rpc.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="111" column="32" lean-forward="false" selection-start-line="111" selection-start-column="18" selection-end-line="111" selection-end-column="32" />
+            <state relative-caret-position="513">
+              <caret line="27" column="7" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_helper.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../token_adapter/test/test_helper.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="btc.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/btc.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="950">
+              <caret line="50" column="42" lean-forward="false" selection-start-line="50" selection-start-column="42" selection-end-line="50" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/base.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="infura.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/provider/infura.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rpc.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/provider/rpc.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="5" column="37" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -146,7 +134,16 @@
       <find>Coin</find>
       <find>puts</find>
       <find>eth_get_transaction_count</find>
+      <find>chain_adapter</find>
+      <find>chain_a</find>
+      <find>chain</find>
+      <find>ChainAdapter</find>
+      <find>chain_</find>
     </findStrings>
+    <replaceStrings>
+      <replace>token_adapter</replace>
+      <replace>TokenAdapter</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -157,11 +154,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lib/chain_adapter/atm_handler.rb" />
-        <option value="$PROJECT_DIR$/lib/chain_adapter/base_handler.rb" />
-        <option value="$PROJECT_DIR$/lib/chain_adapter/eth_handler.rb" />
-        <option value="$PROJECT_DIR$/lib/chain_adapter/erc20_handler.rb" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/lib/chain_adapter/base.rb" />
         <option value="$PROJECT_DIR$/lib/chain_adapter/atm.rb" />
         <option value="$PROJECT_DIR$/lib/chain_adapter/btc.rb" />
@@ -175,15 +167,44 @@
         <option value="$PROJECT_DIR$/lib/chain_adapter/eth/erc20.rb" />
         <option value="$PROJECT_DIR$/lib/chain_adapter/eth/atm.rb" />
         <option value="$PROJECT_DIR$/lib/chain_adapter/eth/etherscan_provider.rb" />
-        <option value="$PROJECT_DIR$/lib/chain_adapter/eth/eth.rb" />
         <option value="$PROJECT_DIR$/lib/chain_adapter/eth/infura_provider.rb" />
         <option value="$PROJECT_DIR$/lib/chain_adapter/eth/base_provider.rb" />
         <option value="$PROJECT_DIR$/lib/chain_adapter/eth/rpc.rb" />
         <option value="$PROJECT_DIR$/lib/chain_adapter/eth/rpc_provider.rb" />
         <option value="$PROJECT_DIR$/test/chain_adapter_test.rb" />
-        <option value="$PROJECT_DIR$/lib/chain_adapter.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/chain_adapter.gemspec" />
+        <option value="$PROJECT_DIR$/lib/chain_adapter/eth/eth.rb" />
+        <option value="$PROJECT_DIR$/lib/chain_adapter/ethereum/provider/base.rb" />
+        <option value="$PROJECT_DIR$/lib/chain_adapter/ethereum/provider/etherscan_provider.rb" />
+        <option value="$PROJECT_DIR$/lib/chain_adapter/ethereum/provider/infura_provider.rb" />
+        <option value="$PROJECT_DIR$/lib/chain_adapter/ethereum/provider/rpc_provider.rb" />
+        <option value="$PROJECT_DIR$/lib/chain_adapter/ethereum/erc20.rb" />
+        <option value="$PROJECT_DIR$/lib/chain_adapter/ethereum/atm.rb" />
+        <option value="$PROJECT_DIR$/lib/chain_adapter/ethereum/eth.rb" />
+        <option value="$PROJECT_DIR$/lib/chain_adapter.rb" />
+        <option value="$PROJECT_DIR$/lib/chain_adapter/ethereum/provider/base._provider.rb" />
+        <option value="$PROJECT_DIR$/lib/chain_adapter/ethereum/provider/etherscan.rb" />
+        <option value="$PROJECT_DIR$/lib/chain_adapter/ethereum/provider/infura.rb" />
+        <option value="$PROJECT_DIR$/lib/chain_adapter/ethereum/provider/rpc.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/provider/base.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/provider/etherscan.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/atm.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/erc20.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/token_adapter/base.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/token_adapter/doge.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/token_adapter/ltc.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/token_adapter/version.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/token_adapter/zec.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/eth.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/provider/infura.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/test/chain_adapter_test.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/README.md" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/json_rpc.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/provider/rpc.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/token_adapter.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/lib/token_adapter/btc.rb" />
+        <option value="$PROJECT_DIR$/../token_adapter/token_adapter.gemspec" />
       </list>
     </option>
   </component>
@@ -219,58 +240,55 @@
           <expand>
             <path>
               <item name="chain_adapter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chain_adapter" type="462c0819:PsiDirectoryNode" />
+              <item name="token_adapter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chain_adapter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chain_adapter" type="462c0819:PsiDirectoryNode" />
+              <item name="token_adapter" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chain_adapter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chain_adapter" type="462c0819:PsiDirectoryNode" />
+              <item name="token_adapter" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="chain_adapter" type="462c0819:PsiDirectoryNode" />
+              <item name="token_adapter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chain_adapter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chain_adapter" type="462c0819:PsiDirectoryNode" />
+              <item name="token_adapter" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="chain_adapter" type="462c0819:PsiDirectoryNode" />
-              <item name="eth" type="462c0819:PsiDirectoryNode" />
+              <item name="token_adapter" type="462c0819:PsiDirectoryNode" />
+              <item name="ethereum" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chain_adapter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chain_adapter" type="462c0819:PsiDirectoryNode" />
+              <item name="token_adapter" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="token_adapter" type="462c0819:PsiDirectoryNode" />
+              <item name="ethereum" type="462c0819:PsiDirectoryNode" />
+              <item name="provider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chain_adapter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="token_adapter" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chain_adapter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="chain_adapter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="pattern-match (v1.0.1, RVM: ruby-2.2.7 [hex]) [gem]" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="chain_adapter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="pattern-match (v1.0.1, RVM: ruby-2.2.7 [hex]) [gem]" type="70bed36:NamedLibraryElementNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../token_adapter/lib/token_adapter" />
+      <recent name="$PROJECT_DIR$/lib/chain_adapter/ethereum/provider" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib/chain_adapter" />
       <recent name="$PROJECT_DIR$" />
@@ -288,7 +306,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Test::Unit/Shoulda/Minitest.test_atm_getbalace: chain_adapter">
+  <component name="RunManager" selected="Test::Unit/Shoulda/Minitest.Run test 'chain_adapter_test': chain_adapter">
     <configuration name="Run test 'chain_adapter_test': chain_adapter" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true">
       <predefined_log_file id="RUBY_TESTUNIT" enabled="true" />
       <module name="chain_adapter" />
@@ -308,7 +326,7 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/chain_adapter_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/token_adapter_test.rb" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
@@ -336,7 +354,7 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/chain_adapter_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/token_adapter_test.rb" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="test_atm_getbalace" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
@@ -364,7 +382,7 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/chain_adapter_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/token_adapter_test.rb" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="test_atm_sendtoaddress" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
@@ -392,7 +410,7 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/chain_adapter_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/token_adapter_test.rb" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="test_eth_getbalance" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
@@ -401,18 +419,38 @@
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
     </configuration>
-    <list size="4">
+    <configuration name="test_helper" type="RubyRunConfigurationType" factoryName="Ruby" temporary="true">
+      <module name="chain_adapter" />
+      <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$/test" />
+      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/test/test_helper.rb" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
+    </configuration>
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'chain_adapter_test': chain_adapter" />
       <item index="1" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.test_atm_sendtoaddress: chain_adapter" />
       <item index="2" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.test_eth_getbalance: chain_adapter" />
       <item index="3" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.test_atm_getbalace: chain_adapter" />
+      <item index="4" class="java.lang.String" itemvalue="Ruby.test_helper" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.test_atm_getbalace: chain_adapter" />
-        <item index="1" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.test_eth_getbalance: chain_adapter" />
-        <item index="2" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.test_atm_sendtoaddress: chain_adapter" />
-        <item index="3" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'chain_adapter_test': chain_adapter" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'chain_adapter_test': chain_adapter" />
+        <item index="1" class="java.lang.String" itemvalue="Ruby.test_helper" />
+        <item index="2" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.test_atm_getbalace: chain_adapter" />
+        <item index="3" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.test_eth_getbalance: chain_adapter" />
+        <item index="4" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.test_atm_sendtoaddress: chain_adapter" />
       </list>
     </recent_temporary>
   </component>
@@ -428,7 +466,9 @@
       <option name="presentableId" value="Default" />
       <updated>1505977397207</updated>
       <workItem from="1505977398894" duration="31945000" />
-      <workItem from="1506218731075" duration="5871000" />
+      <workItem from="1506218731075" duration="8357000" />
+      <workItem from="1506229020446" duration="4000" />
+      <workItem from="1506261965172" duration="3366000" />
     </task>
     <task id="LOCAL-00001" summary="ss">
       <created>1505988005091</created>
@@ -532,16 +572,16 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Run_test_'chain_adapter_test'__chain_adapter - 2017.09.24 at 11h 04m 54s.xml">
-      <configuration name="Run test 'chain_adapter_test': chain_adapter" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Run_test_'chain_adapter_test'__chain_adapter - 2017.09.24 at 11h 05m 04s.xml">
-      <configuration name="Run test 'chain_adapter_test': chain_adapter" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Run_test_'chain_adapter_test'__chain_adapter - 2017.09.24 at 11h 06m 40s.xml">
-      <configuration name="Run test 'chain_adapter_test': chain_adapter" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
     <history-entry file="Run_test_'chain_adapter_test'__chain_adapter - 2017.09.24 at 11h 07m 19s.xml">
+      <configuration name="Run test 'chain_adapter_test': chain_adapter" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_test_'chain_adapter_test'__chain_adapter - 2017.09.24 at 22h 42m 00s.xml">
+      <configuration name="Run test 'chain_adapter_test': chain_adapter" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_test_'chain_adapter_test'__chain_adapter - 2017.09.24 at 22h 47m 08s.xml">
+      <configuration name="Run test 'chain_adapter_test': chain_adapter" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_test_'chain_adapter_test'__chain_adapter - 2017.09.24 at 22h 47m 45s.xml">
       <configuration name="Run test 'chain_adapter_test': chain_adapter" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
     <history-entry file="test_atm_getbalace__chain_adapter - 2017.09.24 at 11h 44m 09s.xml">
@@ -564,13 +604,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37816000" />
+    <option name="totallyTimeSpent" value="43672000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="1023" extended-state="6" />
+    <frame x="0" y="23" width="1680" height="1023" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25305623" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2591687" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cargo" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -661,7 +701,111 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/chain_adapter.gemspec">
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/eth.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/provider/infura.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="45" column="9" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="45" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/erc20.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/token_adapter.gemspec">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/test/token_adapter_test.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="760">
+          <caret line="40" column="33" lean-forward="false" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/provider/etherscan.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="10" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="26" column="27" lean-forward="false" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/version.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/provider/rpc.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/eth.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/provider/infura.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="45" column="9" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="45" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/erc20.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="47" lean-forward="false" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/token_adapter.gemspec">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" column="40" lean-forward="false" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
@@ -669,7 +813,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/chain_adapter_test.rb">
+    <entry file="file://$PROJECT_DIR$/../token_adapter/test/token_adapter_test.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
@@ -677,23 +821,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/base.rb">
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/base.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_helper.rb">
+    <entry file="file://$PROJECT_DIR$/../token_adapter/test/test_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/version.rb">
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/version.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
           <caret line="1" column="18" lean-forward="false" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
@@ -701,14 +843,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.ruby-gemset">
+    <entry file="file://$PROJECT_DIR$/../token_adapter/.ruby-gemset">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/../token_adapter/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="11" column="14" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
@@ -722,33 +864,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/btc.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="59" column="4" lean-forward="false" selection-start-line="59" selection-start-column="4" selection-end-line="61" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/zec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="5" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/ltc.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="5" lean-forward="false" selection-start-line="3" selection-start-column="5" selection-end-line="5" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.2.7@hex/gems/eth-0.4.4/lib/eth/key.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -756,14 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
           <caret line="167" column="8" lean-forward="false" selection-start-line="167" selection-start-column="8" selection-end-line="167" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/doge.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -783,105 +894,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/chain_adapter/atm.rb" />
     <entry file="file://$PROJECT_DIR$/lib/chain_adapter/erc20.rb" />
-    <entry file="file://$PROJECT_DIR$/test/test_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth_helper.rb" />
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/base.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth.rb" />
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/version.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth/atm.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="18" lean-forward="false" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth/erc20.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="32" column="32" lean-forward="false" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth/base_provider.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="111" column="32" lean-forward="false" selection-start-line="111" selection-start-column="18" selection-end-line="111" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth/infura_provider.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="45" column="9" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="45" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth/eth.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth/etherscan_provider.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="10" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter/eth/rpc_provider.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/chain_adapter.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" column="27" lean-forward="false" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/chain_adapter_test.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
+    <entry file="file://$PROJECT_DIR$/../token_adapter/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
@@ -889,10 +904,173 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chain_adapter.gemspec">
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/provider/etherscan.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/atm.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/erc20.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/doge.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ltc.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/version.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/zec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/provider/base.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="13" lean-forward="true" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/bin/console">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/bin/setup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/eth.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="46" lean-forward="false" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="798">
+            <caret line="42" column="40" lean-forward="false" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/provider/infura.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/test/token_adapter_test.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="34" column="18" lean-forward="false" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/test/test_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/json_rpc.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="27" column="7" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/base.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/ethereum/provider/rpc.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="37" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/lib/token_adapter/btc.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="950">
+          <caret line="50" column="42" lean-forward="false" selection-start-line="50" selection-start-column="42" selection-end-line="50" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../token_adapter/token_adapter.gemspec">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="12" column="58" lean-forward="false" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
           <folding />
         </state>
       </provider>

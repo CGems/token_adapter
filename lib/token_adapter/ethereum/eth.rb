@@ -1,15 +1,15 @@
-module ChainAdapter
-  module Eth
+module TokenAdapter
+  module Ethereum
 
     class << self
       attr_accessor :provider
     end
 
-    class Eth < ChainAdapter::Base
+    class Eth < TokenAdapter::Base
   
       def initialize(config)
         super(config)
-        self.class.send(:include, ChainAdapter::Eth.provider)
+        self.class.send(:include, TokenAdapter::Ethereum.provider)
         init_provider(config)
       end
   

@@ -1,4 +1,4 @@
-module ChainAdapter
+module TokenAdapter
   class Zec < Btc
 
     def initialize(config)

@@ -1,4 +1,4 @@
-module ChainAdapter
+module TokenAdapter
   class Ltc < Btc
 
     def initialize(config)

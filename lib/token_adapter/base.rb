@@ -1,4 +1,4 @@
-module ChainAdapter
+module TokenAdapter
   class Base
     attr_reader :config
 

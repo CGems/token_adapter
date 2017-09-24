@@ -1,4 +1,4 @@
-module ChainAdapter
+module TokenAdapter
   class Doge < Btc
 
     def initialize(config)

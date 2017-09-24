@@ -1,11 +1,11 @@
 require "test_helper"
 
-class ChainAdapterTest < Minitest::Test
+class TokenAdapterTest < Minitest::Test
   def setup
-    ChainAdapter.logger = Logger.new(STDOUT)
-    # ChainAdapter::Eth.provider = ChainAdapter::Eth::EtherscanProvider
-    # ChainAdapter::Eth.provider = ChainAdapter::Eth::InfuraProvider
-    ChainAdapter::Eth.provider = ChainAdapter::Eth::RpcProvider
+    TokenAdapter.logger = Logger.new(STDOUT)
+    # TokenAdapter::Eth.provider = TokenAdapter::Eth::EtherscanProvider
+    # TokenAdapter::Eth.provider = TokenAdapter::Eth::InfuraProvider
+    TokenAdapter::Ethereum.provider = TokenAdapter::Ethereum::Provider::Rpc
 
     @eth_config = {
       exchange_address: "0x5c13a82ff280cdd8e6fa12c887652e5de1cd65a8",
@@ -37,12 +37,12 @@ class ChainAdapterTest < Minitest::Test
 
       rpc: 'https://ropsten.infura.io/fEgf2OPCz9nuea7QCvxn'
     }
-    @eth = ChainAdapter::Eth::Eth.new(@eth_config)
-    @atm = ChainAdapter::Eth::Atm.new(@atm_config)
+    @eth = TokenAdapter::Ethereum::Eth.new(@eth_config)
+    @atm = TokenAdapter::Ethereum::Atm.new(@atm_config)
   end
 
   def test_that_it_has_a_version_number
-    refute_nil ::ChainAdapter::VERSION
+    refute_nil ::TokenAdapter::VERSION
   end
 
   def test_eth_getbalance

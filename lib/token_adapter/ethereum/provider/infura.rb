@@ -1,10 +1,10 @@
-module ChainAdapter
-  module Eth
+module TokenAdapter
+  module Ethereum
     module InfuraProvider
-      include ChainAdapter::Eth::BaseProvider
+      include TokenAdapter::Ethereum::Provider::Base
 
       def init_provider(config)
-        Infura.logger = ChainAdapter.logger
+        Infura.logger = TokenAdapter.logger
         Infura.token = config[:infura_token]
         Infura.chain = config[:chain]
       end
