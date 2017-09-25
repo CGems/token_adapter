@@ -25,14 +25,10 @@ module TokenAdapter
         gas_limit = config[:newaddress_gas_limit] || config[:gas_limit] || 200_000
         gas_price = config[:newaddress_gas_price] || config[:gas_price] || 20_000_000_000
   
-        # 生成raw tx
+        # 发送交易
         data = '0xa9b1d507' # Ethereum::Function.calc_id('makeWallet()')
         to = address_contract_address
-        rawtx = generate_raw_transaction(priv, nil, data, gas_limit, gas_price, to)
-        return nil unless rawtx
-  
-        # 执行raw tx
-        txhash = eth_send_raw_transaction(rawtx)
+        txhash = send_transaction(priv, nil, data, gas_limit, gas_price, to)
         return nil unless txhash
 
         # 等待上链
@@ -46,20 +42,11 @@ module TokenAdapter
   
       # 用户提币
       def sendtoaddress(address, amount)
+        priv = config[:exchange_address_priv]
         gas_limit = config[:transfer_gas_limit] || config[:gas_limit] || 200_000
         gas_price = config[:transfer_gas_price] || config[:gas_price] || 20_000_000_000
 
-        TokenAdapter.mutex.synchronize(config[:exchange_address_priv]) do
-          rawtx = generate_raw_transaction(config[:exchange_address_priv],
-                                           amount,
-                                           nil,
-                                           gas_limit,
-                                           gas_price,
-                                           address)
-          return nil unless rawtx
-
-          return eth_send_raw_transaction(rawtx)
-        end
+        return send_transaction(priv, amount, nil, gas_limit, gas_price, address)
       end
   
       # 用于充值，自己添加的属性，数字是10进制的（原始的是字符串形式的16进制）
@@ -111,22 +98,14 @@ module TokenAdapter
   
       def wallet_collect(wallet_address, token_address, amount, token_decimals)
         function_signature = '6ea056a9' # Ethereum::Function.calc_id('sweep(address,uint256)')
-  
         amount_in_wei = (amount*(10**token_decimals)).to_i
         data = "0x#{function_signature}#{padding(token_address)}#{padding(dec_to_hex(amount_in_wei))}"
-  
+        priv = config[:exchange_address_priv]
         gas_limit = config[:collect_gas_limit] || config[:gas_limit] || 200_000
         gas_price = config[:collect_gas_price] || config[:gas_price] || 20_000_000_000
-        rawtx = generate_raw_transaction(config[:exchange_address_priv],
-                                         nil,
-                                         data,
-                                         gas_limit,
-                                         gas_price,
-                                         wallet_address)
-  
-        return nil unless rawtx
-  
-        txhash = eth_send_raw_transaction(rawtx)
+
+        txhash = send_transaction(priv, nil, data, gas_limit, gas_price, wallet_address)
+        return nil unless txhash
   
         return nil if hex_to_dec(txhash) == 0
         return txhash

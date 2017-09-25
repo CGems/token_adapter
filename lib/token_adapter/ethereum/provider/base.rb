@@ -73,6 +73,14 @@ module TokenAdapter
           return tx.hex
         end
 
+        def send_transaction(priv, value, data, gas_limit, gas_price, to = nil)
+          txhash = nil
+          TokenAdapter.mutex.synchronize(priv) do
+            rawtx = generate_raw_transaction(priv, value, data, gas_limit, gas_price, to)
+            txhash = eth_send_raw_transaction(rawtx) if rawtx
+          end
+          return txhash
+        end
 
         def wait_for_miner(txhash, timeout: 300.seconds, step: 5.seconds)
           start_time = Time.now
