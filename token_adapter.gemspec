@@ -28,5 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "eth", "0.4.4"
   spec.add_dependency "etherscan", "0.1.3"
   spec.add_dependency "infura", "0.1.0"
+  spec.add_dependency "remote_lock"
+  spec.add_dependency "redis"
 
 end
