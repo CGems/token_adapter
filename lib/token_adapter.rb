@@ -18,7 +18,6 @@ module TokenAdapter
   end
 
   class JSONRPCError < RuntimeError; end
-  class ConnectionRefusedError < StandardError; end
 end
 
 require "token_adapter/json_rpc"
