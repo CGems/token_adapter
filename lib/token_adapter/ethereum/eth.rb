@@ -48,15 +48,18 @@ module TokenAdapter
       def sendtoaddress(address, amount)
         gas_limit = config[:transfer_gas_limit] || config[:gas_limit] || 200_000
         gas_price = config[:transfer_gas_price] || config[:gas_price] || 20_000_000_000
-        rawtx = generate_raw_transaction(config[:exchange_address_priv],
-                                         amount,
-                                         nil,
-                                         gas_limit,
-                                         gas_price,
-                                         address)
-        return nil unless rawtx
-  
-        eth_send_raw_transaction(rawtx)
+
+        TokenAdapter.mutex.synchronize(config[:exchange_address_priv]) do
+          rawtx = generate_raw_transaction(config[:exchange_address_priv],
+                                           amount,
+                                           nil,
+                                           gas_limit,
+                                           gas_price,
+                                           address)
+          return nil unless rawtx
+
+          return eth_send_raw_transaction(rawtx)
+        end
       end
   
       # 用于充值，自己添加的属性，数字是10进制的（原始的是字符串形式的16进制）

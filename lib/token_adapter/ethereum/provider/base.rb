@@ -70,8 +70,9 @@ module TokenAdapter
           args[:to] = to if to
           tx = ::Eth::Tx.new(args)
           tx.sign key
-          tx.hex
+          return tx.hex
         end
+
 
         def wait_for_miner(txhash, timeout: 300.seconds, step: 5.seconds)
           start_time = Time.now

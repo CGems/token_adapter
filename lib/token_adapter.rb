@@ -2,10 +2,19 @@ require 'etherscan'
 require 'infura'
 require 'eth'
 require 'pattern-match'
+require 'thread'
 
 module TokenAdapter
   class << self
-    attr_accessor :logger
+    attr_accessor :logger, :redis_connection
+    REDIS_LOCK_PREFIX = 'token_adapter_lock'
+
+    def mutex
+      @mutex ||= begin
+        redis_adapter = RemoteLock::Adapters::Redis.new(redis_connection)
+        RemoteLock.new(redis_adapter, REDIS_LOCK_PREFIX)
+      end
+    end
   end
 
   class JSONRPCError < RuntimeError; end
@@ -26,6 +35,7 @@ require "token_adapter/btc"
 require "token_adapter/ltc"
 require "token_adapter/zec"
 require "token_adapter/doge"
+
 
 
 

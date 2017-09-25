@@ -6,7 +6,7 @@ module TokenAdapter
     end
 
     def getnewaddress(account, passphase)
-      call 'getnewaddress'
+      fetch method: 'getnewaddress', params: []
     end
   end
 end
