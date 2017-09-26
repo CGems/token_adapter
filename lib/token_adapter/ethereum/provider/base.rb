@@ -74,8 +74,7 @@ module TokenAdapter
         end
 
         def send_transaction(priv, value, data, gas_limit, gas_price, to = nil)
-          i = 0
-          while i < 3
+          3.times do
             txhash = do_send_transaction(priv, value, data, gas_limit, gas_price, to)
             return txhash if txhash
           end
