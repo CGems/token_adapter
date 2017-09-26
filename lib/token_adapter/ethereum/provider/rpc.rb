@@ -14,8 +14,8 @@ module TokenAdapter
           result.to_i(16) / 10**18.0
         end
 
-        def eth_get_transaction_count(address)
-          result = fetch method: 'eth_getTransactionCount', params: [address, 'latest']
+        def eth_get_transaction_count(address, tag='latest')
+          result = fetch method: 'eth_getTransactionCount', params: [address, tag]
           result.to_i(16)
         end
 
@@ -38,7 +38,7 @@ module TokenAdapter
           params['data'] = data if data
           params['nonce'] = nonce if nonce
 
-          fetch method: 'eth_sendTransaction', params: [params]
+          fetch method: 'eth_sendTransaction', params: [params.to_json]
         end
 
         def eth_get_transaction_by_hash(txhash)

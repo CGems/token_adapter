@@ -53,33 +53,46 @@ module TokenAdapter
 
         # nil or rawtx
         def generate_raw_transaction(priv, value, data, gas_limit, gas_price, to = nil)
-          key = ::Eth::Key.new priv: priv
-          transaction_count = eth_get_transaction_count(key.address)
-          return nil unless transaction_count >= 0
 
-          args = {
-              from: key.address,
+          key = ::Eth::Key.new priv: priv
+          address = key.address
+
+          if no_pending?(address)
+            transaction_count = eth_get_transaction_count(address)
+            return nil unless transaction_count >= 0
+
+            args = {
+              from: address,
               value: 0,
               data: '0x0',
-              nonce: DateTime.now.strftime('%Q').to_i,
+              nonce: transaction_count,
               gas_limit: gas_limit,
               gas_price: gas_price
-          }
-          args[:value] = (value * 10**18).to_i if value
-          args[:data] = data if data
-          args[:to] = to if to
-          tx = ::Eth::Tx.new(args)
-          tx.sign key
-          return tx.hex
+            }
+            args[:value] = (value * 10**18).to_i if value
+            args[:data] = data if data
+            args[:to] = to if to
+            tx = ::Eth::Tx.new(args)
+            tx.sign key
+            return tx.hex
+          else
+            raise PendingTimeoutError
+          end
+
         end
 
-        def send_transaction(priv, value, data, gas_limit, gas_price, to = nil)
-          3.times do
-            txhash = do_send_transaction(priv, value, data, gas_limit, gas_price, to)
-            return txhash if txhash
+        def no_pending?(address)
+          no_pending = false
+          10.times do
+            pending_transaction_count = eth_get_transaction_count(address, 'pending')
+            if pending_transaction_count.zero?
+              no_pending = true
+              break
+            end
+            sleep 6
           end
-          
-          return nil
+
+          return no_pending
         end
 
         # def send_transaction(value, data, gas_limit, gas_price, to = nil)
@@ -93,12 +106,12 @@ module TokenAdapter
         #     nil)
         # end
 
-        def do_send_transaction(priv, value, data, gas_limit, gas_price, to = nil)
+        def send_transaction(priv, value, data, gas_limit, gas_price, to = nil)
           txhash = nil
-          # TokenAdapter.mutex.synchronize(priv) do
+          TokenAdapter.mutex.synchronize(priv) do
             rawtx = generate_raw_transaction(priv, value, data, gas_limit, gas_price, to)
             txhash = eth_send_raw_transaction(rawtx) if rawtx
-          # end
+          end
           return txhash
         end
 

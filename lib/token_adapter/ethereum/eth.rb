@@ -1,5 +1,6 @@
 module TokenAdapter
   module Ethereum
+    class PendingTimeoutError < StandardError; end
 
     class << self
       attr_accessor :provider
