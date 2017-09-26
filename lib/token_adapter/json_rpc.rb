@@ -25,6 +25,8 @@ module TokenAdapter
       data = JSON.parse(resp.body)
       raise TokenAdapter::JSONRPCError, data['error'] if data['error']
       data['result']
+    rescue Errno::ECONNREFUSED => e
+      raise TokenAdapter::JSONRPCError, e.message
     end
   end
 end

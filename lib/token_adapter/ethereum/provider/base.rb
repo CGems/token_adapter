@@ -95,10 +95,10 @@ module TokenAdapter
 
         def do_send_transaction(priv, value, data, gas_limit, gas_price, to = nil)
           txhash = nil
-          TokenAdapter.mutex.synchronize(priv) do
+          # TokenAdapter.mutex.synchronize(priv) do
             rawtx = generate_raw_transaction(priv, value, data, gas_limit, gas_price, to)
             txhash = eth_send_raw_transaction(rawtx) if rawtx
-          end
+          # end
           return txhash
         end
 

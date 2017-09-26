@@ -22,5 +22,8 @@ module TokenAdapter
     def method_missing(name, *args)
       fetch method: name, params: args
     end
+
+    def safe_getbalance
+    end
   end
 end

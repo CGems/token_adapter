@@ -3,8 +3,8 @@ require "test_helper"
 class TokenAdapterTest < Minitest::Test
   def setup
     TokenAdapter.logger = Logger.new(STDOUT)
-    # TokenAdapter::Eth.provider = TokenAdapter::Ethereum::Provider::Etherscan
-    # TokenAdapter::Eth.provider = TokenAdapter::Ethereum::Provider::Infura
+    # TokenAdapter::Ethereum.provider = TokenAdapter::Ethereum::Provider::Etherscan
+    # TokenAdapter::Ethereum.provider = TokenAdapter::Ethereum::Provider::Infura
     TokenAdapter::Ethereum.provider = TokenAdapter::Ethereum::Provider::Rpc
 
     @eth_config = {
