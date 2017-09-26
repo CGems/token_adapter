@@ -5,7 +5,7 @@ module TokenAdapter
       super(config)
     end
 
-    def getnewaddress(account, passphase)
+    def getnewaddress(account, passphrase)
       fetch method: 'getnewaddress', params: []
     end
   end

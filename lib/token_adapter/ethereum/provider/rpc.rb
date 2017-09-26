@@ -24,16 +24,20 @@ module TokenAdapter
           result.to_i(16)
         end
 
+        def personal_unlock_account(address, passphrase)
+          fetch method: 'personal_unlockAccount', params: [address, passphrase]
+        end
+
         def eth_send_raw_transaction(rawtx)
           fetch method: 'eth_sendRawTransaction', params: [rawtx]
         end
 
-        def eth_send_transaction(from, to, gas, gasPrice, value, data, nonce)
+        def eth_send_transaction(from, to, gas, gas_price, value, data, nonce)
           params = {}
           params['from'] = from if from
           params['to'] = to if to
           params['gas'] = gas if gas
-          params['gasPrice'] = gasPrice if gasPrice
+          params['gasPrice'] = gas_price if gas_price
           params['value'] = value if value
           params['data'] = data if data
           params['nonce'] = nonce if nonce

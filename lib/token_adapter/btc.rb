@@ -7,7 +7,7 @@ module TokenAdapter
       @rpc = config[:rpc]
     end
 
-    def getnewaddress(account, passphase)
+    def getnewaddress(account, passphrase)
       fetch method: 'getnewaddress', params: [account]
     end
 
