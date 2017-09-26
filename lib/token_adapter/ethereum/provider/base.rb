@@ -100,7 +100,7 @@ module TokenAdapter
             ( to.nil? ? nil : to ),
             dec_to_hex(gas_limit),
             dec_to_hex(gas_price),
-            ( value.nil? ? nil : dec_to_hex(value*(10**token_decimals)) ),
+            ( value.nil? ? nil : dec_to_hex(value*(10**config[:token_decimals])) ),
             ( data.nil? ? nil : data ),
             nil
           )
