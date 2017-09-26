@@ -57,27 +57,22 @@ module TokenAdapter
           key = ::Eth::Key.new priv: priv
           address = key.address
 
-          if no_pending?(address)
-            transaction_count = eth_get_transaction_count(address)
-            return nil unless transaction_count >= 0
+          transaction_count = eth_get_transaction_count(address, 'pending')
 
-            args = {
-              from: address,
-              value: 0,
-              data: '0x0',
-              nonce: transaction_count,
-              gas_limit: gas_limit,
-              gas_price: gas_price
-            }
-            args[:value] = (value * 10**18).to_i if value
-            args[:data] = data if data
-            args[:to] = to if to
-            tx = ::Eth::Tx.new(args)
-            tx.sign key
-            return tx.hex
-          else
-            raise PendingTimeoutError
-          end
+          args = {
+            from: address,
+            value: 0,
+            data: '0x0',
+            nonce: transaction_count,
+            gas_limit: gas_limit,
+            gas_price: gas_price
+          }
+          args[:value] = (value * 10**18).to_i if value
+          args[:data] = data if data
+          args[:to] = to if to
+          tx = ::Eth::Tx.new(args)
+          tx.sign key
+          tx.hex
 
         end
 
