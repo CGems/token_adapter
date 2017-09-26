@@ -3,6 +3,7 @@ require 'infura'
 require 'eth'
 require 'pattern-match'
 require 'thread'
+require 'remote_lock'
 
 module TokenAdapter
   class << self
