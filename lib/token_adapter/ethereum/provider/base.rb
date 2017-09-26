@@ -58,7 +58,10 @@ module TokenAdapter
           address = key.address
 
           transaction_count = eth_get_transaction_count(address, 'pending')
-
+          TokenAdapter.logger.debug '-----------------------------------------'
+          TokenAdapter.logger.debug "to: #{to}"
+          TokenAdapter.logger.debug transaction_count
+          TokenAdapter.logger.debug '-----------------------------------------'
           args = {
             from: address,
             value: 0,
