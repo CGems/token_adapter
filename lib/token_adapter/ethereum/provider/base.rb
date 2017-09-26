@@ -74,6 +74,16 @@ module TokenAdapter
         end
 
         def send_transaction(priv, value, data, gas_limit, gas_price, to = nil)
+          i = 0
+          while i < 3
+            txhash = do_send_transaction(priv, value, data, gas_limit, gas_price, to)
+            return txhash if txhash
+          end
+          
+          return nil
+        end
+
+        def do_send_transaction(priv, value, data, gas_limit, gas_price, to = nil)
           txhash = nil
           TokenAdapter.mutex.synchronize(priv) do
             rawtx = generate_raw_transaction(priv, value, data, gas_limit, gas_price, to)
