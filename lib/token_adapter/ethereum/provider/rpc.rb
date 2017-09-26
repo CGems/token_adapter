@@ -14,7 +14,7 @@ module TokenAdapter
           result.to_i(16) / 10**18.0
         end
 
-        def eth_get_transaction_count(address, tag='latest')
+        def eth_get_transaction_count(address, tag = 'latest')
           result = fetch method: 'eth_getTransactionCount', params: [address, tag]
           result.to_i(16)
         end

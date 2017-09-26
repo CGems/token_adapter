@@ -84,8 +84,9 @@ module TokenAdapter
         def no_pending?(address)
           no_pending = false
           10.times do
+            transaction_count = eth_get_transaction_count(address)
             pending_transaction_count = eth_get_transaction_count(address, 'pending')
-            if pending_transaction_count.zero?
+            if transaction_count === pending_transaction_count
               no_pending = true
               break
             end
