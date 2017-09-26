@@ -61,7 +61,7 @@ module TokenAdapter
               from: key.address,
               value: 0,
               data: '0x0',
-              nonce: transaction_count,
+              nonce: DateTime.now.strftime('%Q').to_i,
               gas_limit: gas_limit,
               gas_price: gas_price
           }
@@ -81,6 +81,17 @@ module TokenAdapter
           
           return nil
         end
+
+        # def send_transaction(value, data, gas_limit, gas_price, to = nil)
+        #   eth_send_transaction(
+        #     from.nil? : nil : from, 
+        #     to, 
+        #     dec_to_hex(gas_limit), 
+        #     dec_to_hex(gas_price), 
+        #     value.nil? nil : dec_to_hex(value*(10**token_decimals)), 
+        #     data, 
+        #     nil)
+        # end
 
         def do_send_transaction(priv, value, data, gas_limit, gas_price, to = nil)
           txhash = nil

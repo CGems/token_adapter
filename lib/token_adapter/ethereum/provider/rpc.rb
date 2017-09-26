@@ -28,6 +28,19 @@ module TokenAdapter
           fetch method: 'eth_sendRawTransaction', params: [rawtx]
         end
 
+        def eth_send_transaction(from, to, gas, gasPrice, value, data, nonce)
+          params = {}
+          params['from'] = from if from
+          params['to'] = to if to
+          params['gas'] = gas if gas
+          params['gasPrice'] = gasPrice if gasPrice
+          params['value'] = value if value
+          params['data'] = data if data
+          params['nonce'] = nonce if nonce
+
+          fetch method: 'eth_sendTransaction', params: [params]
+        end
+
         def eth_get_transaction_by_hash(txhash)
           fetch method: 'eth_getTransactionByHash', params: [txhash]
         end
