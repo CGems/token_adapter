@@ -227,7 +227,7 @@ module TokenAdapter
           TokenAdapter.logger.info 'ffffffffffffuckkkkkkkkkkk'
           TokenAdapter.logger.info from[:address]
           TokenAdapter.logger.info from[:passphrase]
-          send_transaction_to_internal(from[:address], from[:passphrase], nil, data, gas_limit, gas_price, to)
+          send_transaction_to_internal(from[:address], from[:passphrase], value, data, gas_limit, gas_price, to)
         end
 
       end
