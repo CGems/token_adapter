@@ -2,7 +2,6 @@ module TokenAdapter
   module Ethereum
     module Provider
       module Rpc
-        include TokenAdapter::Ethereum::Provider::Base
         include TokenAdapter::JsonRpc
 
         def init_provider(config)

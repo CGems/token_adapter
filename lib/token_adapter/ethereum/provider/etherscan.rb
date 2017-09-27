@@ -2,7 +2,6 @@ module TokenAdapter
   module Ethereum
     module Provider
       module Etherscan
-        include TokenAdapter::Ethereum::Provider::Base
         using PatternMatch
 
         def init_provider(config)

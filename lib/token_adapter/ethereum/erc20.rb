@@ -18,16 +18,13 @@ module TokenAdapter
       def sendtoaddress(address, amount)
         # 生成raw transaction
         function_signature = 'a9059cbb' # Ethereum::Function.calc_id('transfer(address,uint256)') # a9059cbb
-        amount_in_wei = (amount*(10**config[:token_decimals])).to_i
+        amount_in_wei = (amount * (10**config[:token_decimals])).to_i
         data = '0x' + function_signature + padding(address) + padding(dec_to_hex(amount_in_wei))
-        exchange_address = config[:exchange_address]
-        exchange_address_passphrase = config[:exchange_address_passphrase]
         gas_limit = config[:transfer_gas_limit] || config[:gas_limit] || 200_000
         gas_price = config[:transfer_gas_price] || config[:gas_price] || 20_000_000_000
         to = config[:token_contract_address]
 
-        personal_unlock_account(exchange_address, exchange_address_passphrase)
-        send_transaction(exchange_address, nil, data, gas_limit, gas_price, to)
+        send_transaction(from, nil, data, gas_limit, gas_price, to)
       end
 
       # 用于充值，严格判断
@@ -47,12 +44,12 @@ module TokenAdapter
 
         # 填充交易所需要的数据
         tx['details'] = [
-            {
-                'account' => 'payment',
-                'category' => 'receive',
-                'amount' => value.to_i(16) / 10**config[:token_decimals],
-                'address' => "0x#{input[:params][0][24 .. input[:params][0].length-1]}"
-            }
+          {
+            'account' => 'payment',
+            'category' => 'receive',
+            'amount' => value.to_i(16) / 10**config[:token_decimals],
+            'address' => "0x#{input[:params][0][24 .. input[:params][0].length-1]}"
+          }
         ]
 
         return tx

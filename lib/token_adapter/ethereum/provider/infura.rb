@@ -1,7 +1,6 @@
 module TokenAdapter
   module Ethereum
     module InfuraProvider
-      include TokenAdapter::Ethereum::Provider::Base
 
       def init_provider(config)
         Infura.logger = TokenAdapter.logger
