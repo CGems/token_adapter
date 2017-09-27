@@ -48,25 +48,25 @@ module TokenAdapter
 
         send_transaction(from, amount, nil, gas_limit, gas_price, address)
       end
-  
+
       # 用于充值，自己添加的属性，数字是10进制的（原始的是字符串形式的16进制）
       # 严格判断
       def gettransaction(txid)
         tx = eth_get_transaction_by_hash(txid)
         return nil unless (tx && tx['blockNumber']) # 未上链的直接返回nil，有没有可能之后又上链了？
-  
+
         receipt = eth_get_transaction_receipt(txhash)
         return nil if out_of_gas?(tx, receipt)
-  
+
         # 把回执也作为tx的一部分返回
         tx['receipt'] = receipt
-  
+
         # 确认数
         current_block_number = eth_block_number # 当前的高度
         return nil unless current_block_number
         transaction_block_number = hex_to_dec(tx['blockNumber'])
         tx['confirmations'] = current_block_number - transaction_block_number
-  
+
         # 上链时间
         block = get_block_by_number(tx['blockNumber'])
         if block
@@ -74,7 +74,7 @@ module TokenAdapter
         else
           tx['timereceived'] = Time.now.to_i
         end
-  
+
         # 数量 和 地址
         tx['details'] = [
           {
@@ -84,18 +84,18 @@ module TokenAdapter
             'address' => tx['to']
           }
         ]
-  
+
         return tx
       end
-  
+
       def validateaddress(address)
         {isvalid: true, ismine: false}
       end
-  
+
       def settxfee(fee)
         # do nothing
       end
-  
+
       def wallet_collect(wallet_address, token_address, amount, token_decimals)
         function_signature = '6ea056a9' # Ethereum::Function.calc_id('sweep(address,uint256)')
         amount_in_wei = (amount*(10**token_decimals)).to_i
@@ -105,7 +105,7 @@ module TokenAdapter
 
         txhash = send_transaction(from, nil, data, gas_limit, gas_price, wallet_address)
         return nil unless txhash
-  
+
         return nil if hex_to_dec(txhash) == 0
         return txhash
       end
