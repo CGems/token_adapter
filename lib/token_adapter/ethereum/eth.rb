@@ -1,6 +1,7 @@
 module TokenAdapter
   module Ethereum
     class PendingTimeoutError < StandardError; end
+    class TxHashError < StandardError; end
 
     class << self
       attr_accessor :provider
@@ -29,8 +30,8 @@ module TokenAdapter
         gas_price = config[:newaddress_gas_price] || config[:gas_price]
         address_contract_address = config[:contract_address]
 
-        txhash = send_transaction(from, nil, data, gas_limit, gas_price, address_contract_address)
-        return nil unless txhash
+        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: address_contract_address)
+        raise TxHashError, 'txhash is nil' unless txhash
 
         # 等待上链
         wait_for_miner(txhash)
@@ -46,7 +47,9 @@ module TokenAdapter
         gas_limit = config[:transfer_gas_limit] || config[:gas_limit] || 200_000
         gas_price = config[:transfer_gas_price] || config[:gas_price] || 20_000_000_000
 
-        send_transaction(from, amount, nil, gas_limit, gas_price, address)
+        txhash = send_transaction(from: from, value: amount, gas_limit: gas_limit, gas_price: gas_price, to: address)
+        raise TxHashError, 'txhash is nil' unless txhash
+        txhash
       end
 
       # 用于充值，自己添加的属性，数字是10进制的（原始的是字符串形式的16进制）
@@ -103,11 +106,11 @@ module TokenAdapter
         gas_limit = config[:collect_gas_limit] || config[:gas_limit] || 200_000
         gas_price = config[:collect_gas_price] || config[:gas_price] || 20_000_000_000
 
-        txhash = send_transaction(from, nil, data, gas_limit, gas_price, wallet_address)
-        return nil unless txhash
+        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: wallet_address)
+        raise TxHashError, 'txhash is nil' unless txhash
 
-        return nil if hex_to_dec(txhash) == 0
-        return txhash
+        raise TxHashError, 'txhash is zero' if hex_to_dec(txhash) == 0
+        txhash
       end
 
 

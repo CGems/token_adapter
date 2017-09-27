@@ -24,7 +24,9 @@ module TokenAdapter
         gas_price = config[:transfer_gas_price] || config[:gas_price] || 20_000_000_000
         to = config[:token_contract_address]
 
-        send_transaction(from, nil, data, gas_limit, gas_price, to)
+        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to)
+        raise TxHashError, 'txhash is nil' unless txhash
+        txhash
       end
 
       # 用于充值，严格判断
