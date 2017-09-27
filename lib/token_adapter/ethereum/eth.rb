@@ -224,7 +224,10 @@ module TokenAdapter
         if from.is_a? String
           send_transaction_to_external(from, value, data, gas_limit, gas_price, to)
         else
-          send_transaction_to_internal(from[:address], from[:passphrase], data, gas_limit, gas_price, to)
+          TokenAdapter.logger.info 'ffffffffffffuckkkkkkkkkkk'
+          TokenAdapter.logger.info from[:address]
+          TokenAdapter.logger.info from[:passphrase]
+          send_transaction_to_internal(from[:address], from[:passphrase], nil, data, gas_limit, gas_price, to)
         end
 
       end
