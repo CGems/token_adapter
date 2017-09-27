@@ -41,7 +41,7 @@ module TokenAdapter
           params['data'] = data if data
           params['nonce'] = nonce if nonce
 
-          fetch method: 'eth_sendTransaction', params: [params.to_json]
+          fetch method: 'eth_sendTransaction', params: [params]
         end
 
         def eth_get_transaction_by_hash(txhash)
