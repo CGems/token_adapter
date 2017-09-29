@@ -49,7 +49,7 @@ module TokenAdapter
         end
 
         def eth_get_transaction_receipt(txhash)
-          fetch method: 'eth_getTransactionByReceipt', params: [txhash]
+          fetch method: 'eth_getTransactionReceipt', params: [txhash]
         end
 
         def eth_block_number
