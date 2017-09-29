@@ -57,6 +57,20 @@ module TokenAdapter
         return tx
       end
 
+      def wallet_collect(wallet_address, token_address, amount)
+        function_signature = '6ea056a9' # Ethereum::Function.calc_id('sweep(address,uint256)')
+        amount_in_wei = (amount*(10**config[:token_decimals])).to_i
+        data = "0x#{function_signature}#{padding(token_address)}#{padding(dec_to_hex(amount_in_wei))}"
+        gas_limit = config[:collect_gas_limit] || config[:gas_limit] || 200_000
+        gas_price = config[:collect_gas_price] || config[:gas_price] || 20_000_000_000
+
+        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: wallet_address)
+        raise TxHashError, 'txhash is nil' unless txhash
+
+        raise TxHashError, 'txhash is zero' if hex_to_dec(txhash) == 0
+        txhash
+      end
+
     end
   end
 

@@ -62,4 +62,10 @@ class TokenAdapterTest < Minitest::Test
     assert_kind_of String, txhash
     assert_match /^0x[a-f0-9]*/, txhash
   end
+
+  def test_eth_get_total_balance
+    balance = @eth.get_total_balance(['0xE7DdCa8F81F051330CA748E82682b1Aa4cd8054F', '0x5C13A82fF280Cdd8E6fa12C887652e5De1cD65a8'])
+    assert_kind_of Float, balance
+    puts balance
+  end
 end

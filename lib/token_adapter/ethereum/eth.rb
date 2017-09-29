@@ -20,8 +20,7 @@ module TokenAdapter
   
       # 获取交易所的地址上币
       def getbalance
-        result = eth_get_balance(config[:exchange_address])
-        result.to_f / 10**18
+        get_balance(config[:exchange_address])
       end
   
       def getnewaddress(account, passphrase)
@@ -58,7 +57,7 @@ module TokenAdapter
         tx = eth_get_transaction_by_hash(txid)
         return nil unless (tx && tx['blockNumber']) # 未上链的直接返回nil，有没有可能之后又上链了？
 
-        receipt = eth_get_transaction_receipt(txhash)
+        receipt = eth_get_transaction_receipt(tx['hash'])
         return nil if out_of_gas?(tx, receipt)
 
         # 把回执也作为tx的一部分返回
@@ -100,19 +99,19 @@ module TokenAdapter
       end
 
       def wallet_collect(wallet_address, token_address, amount)
-        function_signature = '6ea056a9' # Ethereum::Function.calc_id('sweep(address,uint256)')
-        amount_in_wei = (amount*(10**config[:token_decimals])).to_i
-        data = "0x#{function_signature}#{padding(token_address)}#{padding(dec_to_hex(amount_in_wei))}"
-        gas_limit = config[:collect_gas_limit] || config[:gas_limit] || 200_000
-        gas_price = config[:collect_gas_price] || config[:gas_price] || 20_000_000_000
-
-        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: wallet_address)
-        raise TxHashError, 'txhash is nil' unless txhash
-
-        raise TxHashError, 'txhash is zero' if hex_to_dec(txhash) == 0
-        txhash
+        nil
       end
 
+      def get_balance(address)
+        result = eth_get_balance(address)
+        result.to_f / 10**18
+      end
+
+      def get_total_balance(addresses)
+        addresses.reduce(0) do |sum, address|
+          sum + get_balance(address)
+        end
+      end
 
       private
 
@@ -184,17 +183,13 @@ module TokenAdapter
         address = key.address
 
         transaction_count = eth_get_transaction_count(address, 'pending')
-        TokenAdapter.logger.info '-----------------------------------------'
-        TokenAdapter.logger.info "to: #{to}"
-        TokenAdapter.logger.info transaction_count
-        TokenAdapter.logger.info '-----------------------------------------'
         args = {
-            from: address,
-            value: 0,
-            data: '0x0',
-            nonce: transaction_count,
-            gas_limit: gas_limit,
-            gas_price: gas_price
+          from: address,
+          value: 0,
+          data: '0x0',
+          nonce: transaction_count,
+          gas_limit: gas_limit,
+          gas_price: gas_price
         }
         args[:value] = (value * 10**18).to_i if value
         args[:data] = data if data
@@ -202,7 +197,6 @@ module TokenAdapter
         tx = ::Eth::Tx.new(args)
         tx.sign key
         tx.hex
-
       end
 
       def no_pending?(address)
@@ -224,9 +218,6 @@ module TokenAdapter
         if from.is_a? String
           send_transaction_to_external(from, value, data, gas_limit, gas_price, to)
         else
-          TokenAdapter.logger.info 'ffffffffffffuckkkkkkkkkkk'
-          TokenAdapter.logger.info from[:address]
-          TokenAdapter.logger.info from[:passphrase]
           send_transaction_to_internal(from[:address], from[:passphrase], value, data, gas_limit, gas_price, to)
         end
 
