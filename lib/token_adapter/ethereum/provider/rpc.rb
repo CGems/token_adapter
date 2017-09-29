@@ -53,7 +53,7 @@ module TokenAdapter
         end
 
         def eth_block_number
-          result = fetch method: 'eth_blockBumber', params: []
+          result = fetch method: 'eth_blockNumber', params: []
           result.to_i(16)
         end
 
