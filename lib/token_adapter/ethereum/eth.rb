@@ -132,13 +132,13 @@ module TokenAdapter
       end
 
       # from to value 以16进制字符串表示, 64位
-      def has_transfer_event_log?(receipt, from, to, value)
+      def has_transfer_event_log?(receipt, from, to, data)
         topics = [
             '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
             from,
             to
         ]
-        return has_event_log?(receipt, config[:token_contract_address], topics, value)
+        return has_event_log?(receipt, config[:token_contract_address], topics, data)
       end
 
       def has_event_log?(receipt, address, topics, data)
@@ -163,17 +163,15 @@ module TokenAdapter
 
         return false unless log['address'] == address.downcase
 
-        return true if topics.length === 0
+        return false unless log['topics'].length == topics.length
 
-        return false unless (log['topics'] && log['topics'].length === topics.length)
-
-        log['topics'].each_with_index do |topic, i|
-          return false unless topic === topics[i]
+        log['topics'].each_with_index do |log_topic, i|
+          return false unless log_topic == topics[i]
         end
 
-        return false unless log['data'] === data
+        return false unless log['data'] == data
 
-        return true
+        true
       end
 
       # nil or rawtx

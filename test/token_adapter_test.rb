@@ -68,4 +68,5 @@ class TokenAdapterTest < Minitest::Test
     assert_kind_of Float, balance
     puts balance
   end
+
 end

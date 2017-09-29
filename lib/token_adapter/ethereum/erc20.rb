@@ -37,7 +37,7 @@ module TokenAdapter
         # 数量 和 地址
         data = tx['input'] || tx['raw']
         input = extract_input(data)
-        from = padding(tx['from'])
+        from = '0x' + padding(tx['from'])
         to = '0x' + input[:params][0]
         value = '0x' + input[:params][1]
 
