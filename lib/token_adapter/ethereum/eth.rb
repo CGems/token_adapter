@@ -70,7 +70,7 @@ module TokenAdapter
         tx['confirmations'] = current_block_number - transaction_block_number
 
         # 上链时间
-        block = get_block_by_number(tx['blockNumber'])
+        block = eth_get_block_by_number(tx['blockNumber'])
         if block
           tx['timereceived'] = hex_to_dec(block['timestamp'])
         else
