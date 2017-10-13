@@ -8,7 +8,7 @@ module TokenAdapter
     end
 
     def getnewaddress(account, passphrase)
-      fetch method: 'getnewaddress', params: [account]
+      return fetch(method: 'getnewaddress', params: [account]), nil
     end
 
     def settxfee(fee)

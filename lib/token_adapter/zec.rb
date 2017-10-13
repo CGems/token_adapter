@@ -6,7 +6,7 @@ module TokenAdapter
     end
 
     def getnewaddress(account, passphrase)
-      fetch method: 'getnewaddress', params: []
+      return fetch(method: 'getnewaddress', params: []), nil
     end
   end
 end

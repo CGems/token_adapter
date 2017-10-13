@@ -38,7 +38,7 @@ module TokenAdapter
         # 从回执的logs里找
         receipt = eth_get_transaction_receipt(txhash)
         return nil unless ( receipt && receipt['logs'] && receipt['logs'][0] && receipt['logs'][0]['data'] )
-        return eth_address(receipt['logs'][0]['data'])
+        return eth_address(receipt['logs'][0]['data']), txhash
       end
 
       # 用户提币
