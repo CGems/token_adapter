@@ -232,7 +232,8 @@ module TokenAdapter
 
       def send_transaction_to_internal(from, passphrase, value, data, gas_limit, gas_price, to = nil)
         personal_unlock_account(from, passphrase)
-        v = value.nil? ? nil : dec_to_hex(value * (10**config[:token_decimals]))
+        value_in_wei = (value * (10**config[:token_decimals])).to_i
+        v = value.nil? ? nil : dec_to_hex(value_in_wei)
         eth_send_transaction(
             (from.nil? ? nil : from),
             (to.nil? ? nil : to),
