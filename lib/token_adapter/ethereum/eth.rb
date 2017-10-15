@@ -58,7 +58,7 @@ module TokenAdapter
         return nil unless (tx && tx['blockNumber']) # 未上链的直接返回nil，有没有可能之后又上链了？
 
         receipt = eth_get_transaction_receipt(tx['hash'])
-        return nil if out_of_gas?(tx, receipt)
+        raise TransactionError, 'out of gas' if out_of_gas?(tx, receipt)
 
         # 把回执也作为tx的一部分返回
         tx['receipt'] = receipt

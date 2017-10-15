@@ -20,6 +20,7 @@ module TokenAdapter
 
   class JSONRPCError < RuntimeError; end
   class ConnectionRefusedError < StandardError; end
+  class TransactionError < StandardError; end
 end
 
 require "token_adapter/json_rpc"
