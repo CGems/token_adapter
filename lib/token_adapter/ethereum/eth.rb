@@ -250,7 +250,7 @@ module TokenAdapter
         )
       end
 
-      def wait_for_miner(txhash, timeout: 300.seconds, step: 5.seconds)
+      def wait_for_miner(txhash, timeout: 1200.seconds, step: 5.seconds)
         start_time = Time.now
         loop do
           raise Timeout::Error if ((Time.now - start_time) > timeout)
