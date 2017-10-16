@@ -8,7 +8,13 @@ module TokenAdapter
     end
 
     class Eth < TokenAdapter::Base
-  
+
+      attr_accessor :logger
+
+      class << self
+        attr_accessor :logger
+      end
+
       def initialize(config)
         super(config)
         if TokenAdapter::Ethereum.provider
@@ -16,6 +22,7 @@ module TokenAdapter
         end
         self.class.send(:include, TokenAdapter::Ethereum.provider)
         init_provider(config)
+        @logger = TokenAdapter::Ethereum.Eth.logger || TokenAdapter.logger
       end
   
       # 获取交易所的地址上币
