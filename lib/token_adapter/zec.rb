@@ -3,6 +3,7 @@ module TokenAdapter
 
     def initialize(config)
       super(config)
+      @logger = TokenAdapter::Zec.logger || TokenAdapter.logger
     end
 
     def getnewaddress(account, passphrase)
