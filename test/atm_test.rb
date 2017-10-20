@@ -26,5 +26,7 @@ class AtmTest < Minitest::Test
 
   def test_get_a_fail_transaction
     tx = @atm.gettransaction('0x625bc651b0f1763b338c4c4a45613971acc64837d379b82bfc7298f26224fe68')
+  rescue TokenAdapter::TransactionError => e
+    assert_equal e.message, 'Transaction Fail'
   end
 end
