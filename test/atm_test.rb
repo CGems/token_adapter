@@ -23,4 +23,8 @@ class AtmTest < Minitest::Test
     tx = @atm.gettransaction('0xecc376e9d3842df96dab11ad03b4c15ee678ed152d250c2c4233774078ba7671')
     assert_equal tx.nil?, false
   end
+
+  def test_get_a_fail_transaction
+    tx = @atm.gettransaction('0x625bc651b0f1763b338c4c4a45613971acc64837d379b82bfc7298f26224fe68')
+  end
 end
