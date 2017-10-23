@@ -13,7 +13,7 @@ class AtmInfuraTest < Minitest::Test
 
         infura_token: 'fEgf2OPCz9nuea7QCvxn',
         chain: 'ropsten',
-        exchange_address_priv: ''
+        exchange_address_priv: '2f832c0c03c67d344f110df6ae37daf8181db66eb1efad3e63cfe55c2029a02c'
     }
     @atm = TokenAdapter::Ethereum::Atm.new(@config)
   end
