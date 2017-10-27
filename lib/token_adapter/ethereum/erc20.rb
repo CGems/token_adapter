@@ -6,9 +6,10 @@ module TokenAdapter
         super(config)
       end
 
-      def getbalance
+      def getbalance(account = nil)
+        account ||= config[:exchange_address]
         function_signature = '70a08231' # Ethereum::Function.calc_id('balanceOf(address)') # 70a08231
-        data = '0x' + function_signature + padding(config[:exchange_address])
+        data = '0x' + function_signature + padding(account)
         to = config[:token_contract_address]
 
         eth_call(to, data) / 10**config[:token_decimals]
