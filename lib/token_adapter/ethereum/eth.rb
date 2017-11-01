@@ -26,8 +26,8 @@ module TokenAdapter
   
       def getnewaddress(account, passphrase)
         data = '0xa9b1d507' # Ethereum::Function.calc_id('makeWallet()')
-        gas_limit = config[:newaddress_gas_limit] || config[:gas_limit]
-        gas_price = config[:newaddress_gas_price] || config[:gas_price]
+        gas_limit = config[:newaddress_gas_limit] || config[:gas_limit] || 200_000
+        gas_price = config[:newaddress_gas_price] || config[:gas_price] || 20_000_000_000
         address_contract_address = config[:contract_address]
 
         txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: address_contract_address)
@@ -224,11 +224,11 @@ module TokenAdapter
       end
 
       def send_transaction_to_external(priv, value, data, gas_limit, gas_price, to = nil)
-        txhash = nil
-        TokenAdapter.mutex.synchronize(priv) do
+        # txhash = nil
+        # TokenAdapter.mutex.synchronize(priv) do
           rawtx = generate_raw_transaction(priv, value, data, gas_limit, gas_price, to)
           txhash = eth_send_raw_transaction(rawtx) if rawtx
-        end
+        # end
         return txhash
       end
 
@@ -252,7 +252,7 @@ module TokenAdapter
         )
       end
 
-      def wait_for_miner(txhash, timeout: 1200.seconds, step: 5.seconds)
+      def wait_for_miner(txhash, timeout: 1200, step: 5)
         start_time = Time.now
         loop do
           raise Timeout::Error if ((Time.now - start_time) > timeout)
@@ -263,7 +263,7 @@ module TokenAdapter
 
       def mined?(txhash)
         result = eth_get_transaction_by_hash(txhash)
-        result['blockNumber'].present?
+        not result['blockNumber'].nil?
       end
 
       # tools

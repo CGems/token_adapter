@@ -38,7 +38,7 @@ class TokenAdapterTest < Minitest::Test
       rpc: 'https://ropsten.infura.io/fEgf2OPCz9nuea7QCvxn'
     }
     @eth = TokenAdapter::Ethereum::Eth.new(@eth_config)
-    @atm = TokenAdapter::Ethereum::Atm.new(@atm_config)
+    @eth = TokenAdapter::Ethereum::Atm.new(@atm_config)
   end
 
   def test_that_it_has_a_version_number
@@ -52,13 +52,13 @@ class TokenAdapterTest < Minitest::Test
   end
 
   def test_atm_getbalace
-    balance = @atm.getbalance
+    balance = @eth.getbalance
     assert_kind_of Fixnum, balance
     puts balance
   end
 
   def test_atm_sendtoaddress
-    txhash = @atm.sendtoaddress('0xE7DdCa8F81F051330CA748E82682b1Aa4cd8054F', 5)
+    txhash = @eth.sendtoaddress('0xE7DdCa8F81F051330CA748E82682b1Aa4cd8054F', 5)
     assert_kind_of String, txhash
     assert_match /^0x[a-f0-9]*/, txhash
   end
