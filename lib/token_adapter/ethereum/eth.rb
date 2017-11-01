@@ -20,8 +20,9 @@ module TokenAdapter
       end
   
       # 获取交易所的地址上币
-      def getbalance
-        get_balance(config[:exchange_address])
+      def getbalance(account = nil)
+        account ||= config[:exchange_address]
+        get_balance(account)
       end
   
       def getnewaddress(account, passphrase)
