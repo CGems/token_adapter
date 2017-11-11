@@ -61,7 +61,7 @@ module TokenAdapter
 
         receipt = eth_get_transaction_receipt(tx['hash'])
         raise TransactionError, 'Transaction Fail' if (receipt['status'] && receipt['status'] == '0x0')
-        raise TransactionError, 'out of gas' if out_of_gas?(tx, receipt)
+        # raise TransactionError, 'out of gas' if out_of_gas?(tx, receipt)
 
         # 把回执也作为tx的一部分返回
         tx['receipt'] = receipt
