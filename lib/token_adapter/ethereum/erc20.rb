@@ -50,7 +50,7 @@ module TokenAdapter
           {
             'account' => 'payment',
             'category' => 'receive',
-            'amount' => value.to_i(16) / 10**config[:token_decimals],
+            'amount' => value.to_i(16) / 10.0**config[:token_decimals],
             'address' => "0x#{input[:params][0][24 .. input[:params][0].length-1]}"
           }
         ]
