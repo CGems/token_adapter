@@ -279,7 +279,7 @@ module TokenAdapter
 
       def mined?(txhash)
         result = eth_get_transaction_by_hash(txhash)
-        not result['blockNumber'].nil?
+        result and (not result['blockNumber'].nil?)
       end
 
       # tools
