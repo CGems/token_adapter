@@ -39,12 +39,8 @@ require "token_adapter/ethereum/omg"
 require "token_adapter/ethereum/mkr"
 require "token_adapter/ethereum/mht"
 require "token_adapter/ethereum/cxt"
+require "token_adapter/ethereum/bpt"
 require "token_adapter/btc"
 require "token_adapter/ltc"
 require "token_adapter/zec"
 require "token_adapter/doge"
-
-
-
-
-
