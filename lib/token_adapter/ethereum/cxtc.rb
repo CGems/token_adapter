@@ -1,9 +1,9 @@
 module TokenAdapter
   module Ethereum
-    class Cxt < Erc20
+    class Cxtc < Erc20
       def initialize(config)
         super(config)
-        @logger = TokenAdapter::Ethereum::Cxt.logger || TokenAdapter.logger
+        @logger = TokenAdapter::Ethereum::Cxtc.logger || TokenAdapter.logger
       end
     end
   end
