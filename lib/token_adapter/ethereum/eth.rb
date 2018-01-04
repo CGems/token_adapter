@@ -28,7 +28,7 @@ module TokenAdapter
       def getnewaddress(account, passphrase)
         data = '0xa9b1d507' # Ethereum::Function.calc_id('makeWallet()')
         gas_limit = config[:newaddress_gas_limit] || config[:gas_limit] || 200_000
-        gas_price = config[:newaddress_gas_price] || config[:gas_price] || 20_000_000_000
+        gas_price = config[:newaddress_gas_price] || config[:gas_price]
         address_contract_address = config[:contract_address]
 
         txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: address_contract_address)
@@ -46,7 +46,7 @@ module TokenAdapter
       # 用户提币
       def sendtoaddress(address, amount)
         gas_limit = config[:transfer_gas_limit] || config[:gas_limit] || 200_000
-        gas_price = config[:transfer_gas_price] || config[:gas_price] || 20_000_000_000
+        gas_price = config[:transfer_gas_price] || config[:gas_price]
 
         txhash = send_transaction(from: from, value: amount, gas_limit: gas_limit, gas_price: gas_price, to: address)
         raise TxHashError, 'txhash is nil' unless txhash
@@ -111,7 +111,7 @@ module TokenAdapter
         end
 
         gas_limit = config[:collect_gas_limit] || config[:gas_limit] || 200_000
-        gas_price = config[:collect_gas_price] || config[:gas_price] || 20_000_000_000
+        gas_price = config[:collect_gas_price] || config[:gas_price]
 
         txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: wallet_address)
         raise TxHashError, 'txhash is nil' unless txhash
@@ -132,6 +132,8 @@ module TokenAdapter
       end
 
       private
+
+
 
       def from
         exchange_address_priv = config[:exchange_address_priv]
@@ -230,7 +232,7 @@ module TokenAdapter
         return no_pending
       end
 
-      def send_transaction(from: nil, value: nil, data: nil, gas_limit: 200_000, gas_price: 20_000_000_000, to: nil)
+      def send_transaction(from: nil, value: nil, data: nil, gas_limit: 200_000, gas_price: nil, to: nil)
         if from.is_a? String
           send_transaction_to_external(from, value, data, gas_limit, gas_price, to)
         else
@@ -261,7 +263,7 @@ module TokenAdapter
             (from.nil? ? nil : from),
             (to.nil? ? nil : to),
             dec_to_hex(gas_limit),
-            dec_to_hex(gas_price),
+            dec_to_hex(gas_price) || eth_gas_price,
             v,
             (data.nil? ? nil : data),
             nil

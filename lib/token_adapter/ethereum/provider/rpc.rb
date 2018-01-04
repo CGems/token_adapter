@@ -44,6 +44,23 @@ module TokenAdapter
           fetch method: 'eth_sendTransaction', params: [params]
         end
 
+        def eth_estimate_gas(from, to, gas, gas_price, value, data, nonce)
+          params = {}
+          params['from'] = from if from
+          params['to'] = to if to
+          params['gas'] = gas if gas
+          params['gasPrice'] = gas_price if gas_price
+          params['value'] = value if value
+          params['data'] = data if data
+          params['nonce'] = nonce if nonce
+
+          fetch method: 'eth_estimateGas', params: [params]
+        end
+
+        def eth_gas_price
+          fetch method: 'eth_gasPrice', params: []
+        end
+
         def eth_get_transaction_by_hash(txhash)
           fetch method: 'eth_getTransactionByHash', params: [txhash]
         end
