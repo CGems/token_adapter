@@ -259,11 +259,13 @@ module TokenAdapter
           v = nil
         end
 
+        gas_price_in_hex = gas_price.nil? ? eth_gas_price : dec_to_hex(gas_price) 
+
         eth_send_transaction(
             (from.nil? ? nil : from),
             (to.nil? ? nil : to),
             dec_to_hex(gas_limit),
-            dec_to_hex(gas_price) || eth_gas_price,
+            gas_price_in_hex,
             v,
             (data.nil? ? nil : data),
             nil
