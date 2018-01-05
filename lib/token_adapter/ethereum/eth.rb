@@ -11,7 +11,7 @@ module TokenAdapter
 
       def initialize(config)
         super(config)
-        if TokenAdapter::Ethereum.provider
+        if TokenAdapter::Ethereum.provider.nil?
           TokenAdapter::Ethereum.provider = Provider::Rpc
         end
         self.class.send(:include, TokenAdapter::Ethereum.provider)
