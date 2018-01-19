@@ -232,7 +232,7 @@ module TokenAdapter
         return no_pending
       end
 
-      def send_transaction(from: nil, value: nil, data: nil, gas_limit, gas_price: nil, to: nil)
+      def send_transaction(from: nil, value: nil, data: nil, gas_limit: nil, gas_price: nil, to: nil)
         if from.is_a? String
           send_transaction_to_external(from, value, data, gas_limit, gas_price, to)
         else
