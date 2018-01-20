@@ -200,7 +200,6 @@ module TokenAdapter
         key = ::Eth::Key.new priv: priv
         address = key.address
 
-        gas_limit_in_dec = gas_limit.nil? ? (eth_estimate_gas.to_i(16) + 10000) : gas_limit
         gas_price_in_dec = gas_price.nil? ? eth_gas_price.to_i(16) : gas_price
 
         transaction_count = eth_get_transaction_count(address, 'pending')
@@ -209,7 +208,7 @@ module TokenAdapter
           value: 0,
           data: '0x0',
           nonce: transaction_count,
-          gas_limit: gas_limit_in_dec,
+          gas_limit: gas_limit,
           gas_price: gas_price_in_dec
         }
         args[:value] = (value * 10**18).to_i if value
@@ -263,13 +262,12 @@ module TokenAdapter
           v = nil
         end
 
-        gas_limit_in_hex = gas_limit.nil? ? dec_to_hex(eth_estimate_gas.to_i(16) + 10000) : dec_to_hex(gas_limit) 
         gas_price_in_hex = gas_price.nil? ? eth_gas_price : dec_to_hex(gas_price) 
 
         eth_send_transaction(
             (from.nil? ? nil : from),
             (to.nil? ? nil : to),
-            gas_limit_in_hex,
+            dec_to_hex(gas_limit),
             gas_price_in_hex,
             v,
             (data.nil? ? nil : data),
