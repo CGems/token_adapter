@@ -200,14 +200,17 @@ module TokenAdapter
         key = ::Eth::Key.new priv: priv
         address = key.address
 
+        gas_limit_in_dec = gas_limit.nil? ? (eth_estimate_gas.to_i(16) + 10000) : gas_limit
+        gas_price_in_dec = gas_price.nil? ? eth_gas_price.to_i(16) : gas_price
+
         transaction_count = eth_get_transaction_count(address, 'pending')
         args = {
           from: address,
           value: 0,
           data: '0x0',
           nonce: transaction_count,
-          gas_limit: gas_limit,
-          gas_price: gas_price
+          gas_limit: gas_limit_in_dec,
+          gas_price: gas_price_in_dec
         }
         args[:value] = (value * 10**18).to_i if value
         args[:data] = data if data
@@ -241,6 +244,7 @@ module TokenAdapter
 
       end
 
+      # 未加锁，只能是串行处理，不过加了锁也没有用
       def send_transaction_to_external(priv, value, data, gas_limit, gas_price, to = nil)
         # txhash = nil
         # TokenAdapter.mutex.synchronize(priv) do
