@@ -134,6 +134,8 @@ module TokenAdapter
       def stuck_up(txhash, gas_price)
         puts "re send the tx(#{txhash}) with new gasprice #{gas_price} gwei"
 
+        return if gas_price > 2000_0000_0000
+        
         tx = eth_get_transaction_by_hash(txhash)
         from = tx["from"]
         value = tx["value"]
