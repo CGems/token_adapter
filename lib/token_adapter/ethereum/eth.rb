@@ -135,7 +135,7 @@ module TokenAdapter
         puts "re send the tx(#{txhash}) with new gasprice #{gas_price} gwei"
 
         return if gas_price > 2000_0000_0000
-        
+
         tx = eth_get_transaction_by_hash(txhash)
         from = tx["from"]
         value = tx["value"]
@@ -146,9 +146,9 @@ module TokenAdapter
         nonce = tx["nonce"]
 
         return unless from == config[:exchange_address]
-
+        
         personal_unlock_account(from, config[:exchange_address_passphrase])
-        eth_send_transaction(from, to, value, data, gas_limit, gas_price, value, data, nonce)
+        eth_send_transaction(from, to, gas_limit, gas_price, value, data, nonce)
       end
 
       private
