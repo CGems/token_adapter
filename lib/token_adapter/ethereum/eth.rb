@@ -151,6 +151,31 @@ module TokenAdapter
         eth_send_transaction(from, to, gas_limit, gas_price, value, data, nonce)
       end
 
+      # nil or rawtx
+      def generate_raw_transaction(priv, value, data, gas_limit, gas_price, to = nil, nonce = nil)
+
+        key = ::Eth::Key.new priv: priv
+        address = key.address
+
+        gas_price_in_dec = gas_price.nil? ? eth_gas_price.to_i(16) : gas_price
+
+        nonce = nonce.nil? ? eth_get_transaction_count(address, 'pending') : nonce
+        args = {
+          from: address,
+          value: 0,
+          data: '0x0',
+          nonce: nonce,
+          gas_limit: gas_limit,
+          gas_price: gas_price_in_dec
+        }
+        args[:value] = (value * 10**18).to_i if value
+        args[:data] = data if data
+        args[:to] = to if to
+        tx = ::Eth::Tx.new(args)
+        tx.sign key
+        tx.hex
+      end
+
       private
 
       def from
@@ -210,31 +235,6 @@ module TokenAdapter
         return false unless log['data'] == data
 
         true
-      end
-
-      # nil or rawtx
-      def generate_raw_transaction(priv, value, data, gas_limit, gas_price, to = nil, nonce = nil)
-
-        key = ::Eth::Key.new priv: priv
-        address = key.address
-
-        gas_price_in_dec = gas_price.nil? ? eth_gas_price.to_i(16) : gas_price
-
-        nonce = nonce.nil? ? eth_get_transaction_count(address, 'pending') : nonce
-        args = {
-          from: address,
-          value: 0,
-          data: '0x0',
-          nonce: nonce,
-          gas_limit: gas_limit,
-          gas_price: gas_price_in_dec
-        }
-        args[:value] = (value * 10**18).to_i if value
-        args[:data] = data if data
-        args[:to] = to if to
-        tx = ::Eth::Tx.new(args)
-        tx.sign key
-        tx.hex
       end
 
       def no_pending?(address)
