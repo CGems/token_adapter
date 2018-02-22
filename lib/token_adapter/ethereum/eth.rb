@@ -131,9 +131,25 @@ module TokenAdapter
         end
       end
 
+      def stuck_up(txhash, gas_price)
+        puts "re send the tx(#{txhash}) with new gasprice #{gas_price} gwei"
+
+        tx = eth_get_transaction_by_hash(txhash)
+        from = tx["from"]
+        value = tx["value"]
+        data = tx["input"]
+        gas_limit = tx["gas"]
+        gas_price = dec_to_hex(gas_price)
+        to = tx["to"]
+        nonce = tx["nonce"]
+
+        return unless from == config[:exchange_address]
+
+        personal_unlock_account(from, config[:exchange_address_passphrase])
+        eth_send_transaction(from, to, value, data, gas_limit, gas_price, value, data, nonce)
+      end
+
       private
-
-
 
       def from
         exchange_address_priv = config[:exchange_address_priv]
