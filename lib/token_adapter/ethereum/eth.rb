@@ -131,26 +131,27 @@ module TokenAdapter
         end
       end
 
-      def stuck_up(txhash, gas_price)
+      def stuck_up(priv, txhash, gas_price)
         puts "re send the tx(#{txhash}) with new gasprice #{gas_price} gwei"
 
-        return if gas_price > 2000_0000_0000
+        return if gas_price > 200000000000
 
         tx = eth_get_transaction_by_hash(txhash)
+        return if tx.nil?
+
         from = tx["from"]
-        value = tx["value"]
+        value = tx["value"].to_i(16)
         data = tx["input"]
-        gas_limit = tx["gas"]
-        gas_price = dec_to_hex(gas_price)
+        gas_limit = tx["gas"].to_i(16)
         to = tx["to"]
-        nonce = tx["nonce"]
+        nonce = tx["nonce"].to_i(16)
 
         return unless from == config[:exchange_address]
 
-        personal_unlock_account(from, config[:exchange_address_passphrase])
-        eth_send_transaction(from, to, gas_limit, gas_price, value, data, nonce)
+        generate_raw_transaction(priv, value, data, gas_limit, gas_price, to = nil, nonce = nil)
       end
 
+      # api.generate_raw_transaction("xxxx", 0, "0x6ea056a900000000000000000000000094d9eba82c8d45f53d19ac3c40163492ef83b38400000000000000000000000000000000000000000000000ae56f730e6d840000", 200000, 41000000000, "0x7ce6e0a649b3c25691e41ee39cded68d916a5d41", 62948)
       # nil or rawtx
       def generate_raw_transaction(priv, value, data, gas_limit, gas_price, to = nil, nonce = nil)
 
