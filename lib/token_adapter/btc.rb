@@ -5,7 +5,6 @@ module TokenAdapter
     def initialize(config)
       super(config)
       @rpc = config[:rpc]
-      @logger = TokenAdapter::Btc.logger || TokenAdapter.logger
     end
 
     def getnewaddress(account, passphrase)

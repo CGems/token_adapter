@@ -16,7 +16,6 @@ module TokenAdapter
         end
         self.class.send(:include, TokenAdapter::Ethereum.provider)
         init_provider(config)
-        @logger = TokenAdapter::Ethereum::Eth.logger || TokenAdapter.logger
       end
   
       # 获取交易所的地址上币
@@ -60,6 +59,7 @@ module TokenAdapter
         return nil unless (tx && tx['blockNumber']) # 未上链的直接返回nil，有没有可能之后又上链了？
 
         receipt = eth_get_transaction_receipt(tx['hash'])
+        return nil unless receipt
         raise TransactionError, 'Transaction Fail' if (receipt['status'] && receipt['status'] == '0x0')
         # raise TransactionError, 'out of gas' if out_of_gas?(tx, receipt)
 

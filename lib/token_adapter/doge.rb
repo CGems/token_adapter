@@ -3,7 +3,6 @@ module TokenAdapter
 
     def initialize(config)
       super(config)
-      @logger = TokenAdapter::Doge.logger || TokenAdapter.logger
     end
 
   end

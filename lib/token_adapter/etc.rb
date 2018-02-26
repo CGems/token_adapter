@@ -10,7 +10,6 @@ module TokenAdapter
       self.class.send(:include, TokenAdapter::Ethereum::Provider::Rpc)
       init_provider(config)
       @rpc = config[:rpc]
-      @logger = TokenAdapter::Etc.logger || TokenAdapter.logger
     end
 
     # 获取交易所的地址上币
