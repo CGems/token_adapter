@@ -16,13 +16,13 @@ module TokenAdapter
 
     def fetch(method:, params:)
       request_content = json_rpc(method: method, params: params).to_json
-      # logger.debug "post: #{@rpc}"
-      # logger.debug "     params: #{request_content}"
+      # TokenAdapter.logger.debug "post: #{@rpc}"
+      # TokenAdapter.logger.debug "     params: #{request_content}"
       resp = conn.post do |req|
         req.headers['Content-Type'] = 'application/json'
         req.body = request_content
       end
-      # logger.debug "     result: #{resp.body}"
+      # TokenAdapter.logger.debug "     result: #{resp.body}"
       data = JSON.parse(resp.body)
       raise TokenAdapter::JSONRPCError, data['error'] if data['error']
       data['result']
