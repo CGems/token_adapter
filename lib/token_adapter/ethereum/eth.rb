@@ -160,6 +160,10 @@ module TokenAdapter
 
         gas_price_in_dec = gas_price.nil? ? eth_gas_price.to_i(16) : gas_price
 
+        if gas_price_in_dec < 5_000_000_000
+          gas_price_in_dec = 5_000_000_000
+        end
+
         nonce = nonce.nil? ? eth_get_transaction_count(address, 'pending') : nonce
         args = {
           from: address,
@@ -281,7 +285,12 @@ module TokenAdapter
           v = nil
         end
 
+
         gas_price_in_hex = gas_price.nil? ? eth_gas_price : dec_to_hex(gas_price) 
+
+        if gas_price_in_hex.to_i(16) < 5_000_000_000
+          gas_price_in_hex = dec_to_hex(5_000_000_000)
+        end
 
         eth_send_transaction(
             (from.nil? ? nil : from),
