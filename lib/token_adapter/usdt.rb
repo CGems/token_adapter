@@ -33,7 +33,7 @@ module TokenAdapter
     private
 
     def from
-      from = config[:exchange_address]
+      from = config[:assets][:accounts][0][:address]
       from
     end
   end
