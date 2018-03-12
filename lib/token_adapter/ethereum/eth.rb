@@ -124,26 +124,6 @@ module TokenAdapter
         end
       end
 
-      def stuck_up(priv, txhash, gas_price)
-        puts "re send the tx(#{txhash}) with new gasprice #{gas_price} gwei"
-
-        return if gas_price > 200000000000
-
-        tx = eth_get_transaction_by_hash(txhash)
-        return if tx.nil?
-
-        from = tx["from"]
-        value = tx["value"].to_i(16)
-        data = tx["input"]
-        gas_limit = tx["gas"].to_i(16)
-        to = tx["to"]
-        nonce = tx["nonce"].to_i(16)
-
-        return unless from == config[:exchange_address]
-
-        generate_raw_transaction(priv, value, data, gas_limit, gas_price, to = nil, nonce = nil)
-      end
-
       # api.generate_raw_transaction("xxxx", 0, "0x6ea056a900000000000000000000000094d9eba82c8d45f53d19ac3c40163492ef83b38400000000000000000000000000000000000000000000000ae56f730e6d840000", 200000, 41000000000, "0x7ce6e0a649b3c25691e41ee39cded68d916a5d41", 62948)
       # nil or rawtx
       def generate_raw_transaction(priv, value, data, gas_limit, gas_price, to = nil, nonce = nil)
@@ -258,13 +238,9 @@ module TokenAdapter
 
       end
 
-      # 未加锁，只能是串行处理，不过加了锁也没有用
       def send_transaction_to_external(priv, value, data, gas_limit, gas_price, to = nil)
-        # txhash = nil
-        # TokenAdapter.mutex.synchronize(priv) do
-          rawtx = generate_raw_transaction(priv, value, data, gas_limit, gas_price, to)
-          txhash = eth_send_raw_transaction(rawtx) if rawtx
-        # end
+        rawtx = generate_raw_transaction(priv, value, data, gas_limit, gas_price, to)
+        txhash = eth_send_raw_transaction(rawtx) if rawtx
         return txhash
       end
 

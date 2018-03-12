@@ -1,5 +1,6 @@
 require "json"
 require "faraday"
+require "eth"
 
 module TokenAdapter
   class << self
@@ -34,6 +35,8 @@ require "token_adapter/ethereum/ncs"
 require "token_adapter/ethereum/sda"
 require "token_adapter/ethereum/icc"
 require "token_adapter/ethereum/mag"
+require "token_adapter/ethereum/erc223"
+require "token_adapter/ethereum/ext"
 require "token_adapter/btc"
 require "token_adapter/ltc"
 require "token_adapter/zec"
