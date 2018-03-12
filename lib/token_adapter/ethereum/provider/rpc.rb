@@ -4,8 +4,8 @@ module TokenAdapter
       module Rpc
         include TokenAdapter::JsonRpc
 
-        def init_provider(config)
-          @rpc = config[:rpc]
+        def init_provider(rpc_endpoint)
+          @rpc = rpc_endpoint
         end
 
         def eth_get_balance(address)

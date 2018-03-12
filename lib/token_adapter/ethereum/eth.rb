@@ -6,22 +6,25 @@ module TokenAdapter
     class Eth < TokenAdapter::Base
       include Provider::Rpc
 
+      attr_accessor :token_decimals
+
       def initialize(config)
         super(config)
-        init_provider(config)
+        init_provider(TokenAdapter::Ethereum.rpc_endpoint || config[:rpc])
+        token_decimals = 18
       end
   
       # 获取交易所的地址上币
       def getbalance(account = nil)
-        account ||= config[:exchange_address]
+        account ||= (TokenAdapter::Ethereum.exchange_address || config[:exchange_address])
         get_balance(account)
       end
   
       def getnewaddress(account, passphrase)
         data = '0xa9b1d507' # Ethereum::Function.calc_id('makeWallet()')
-        gas_limit = config[:newaddress_gas_limit] || config[:gas_limit]
-        gas_price = config[:newaddress_gas_price] || config[:gas_price]
-        address_contract_address = config[:contract_address]
+        gas_limit = TokenAdapter::Ethereum.newaddress_gas_limit || config[:newaddress_gas_limit]
+        gas_price = TokenAdapter::Ethereum.newaddress_gas_price || config[:newaddress_gas_price]
+        address_contract_address = TokenAdapter::Ethereum.contract_address || config[:contract_address]
 
         txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: address_contract_address)
         raise TxHashError, 'txhash is nil' unless txhash
@@ -37,8 +40,8 @@ module TokenAdapter
 
       # 用户提币
       def sendtoaddress(address, amount)
-        gas_limit = config[:transfer_gas_limit] || config[:gas_limit]
-        gas_price = config[:transfer_gas_price] || config[:gas_price]
+        gas_limit = TokenAdapter::Ethereum.transfer_gas_limit || config[:transfer_gas_limit]
+        gas_price = TokenAdapter::Ethereum.transfer_gas_price || config[:transfer_gas_price]
 
         txhash = send_transaction(from: from, value: amount, gas_limit: gas_limit, gas_price: gas_price, to: address)
         raise TxHashError, 'txhash is nil' unless txhash
@@ -96,15 +99,15 @@ module TokenAdapter
 
       def wallet_collect(wallet_address, token_address, amount)
         function_signature = '6ea056a9' # Ethereum::Function.calc_id('sweep(address,uint256)')
-        amount_in_wei = (amount*(10**config[:token_decimals])).to_i
+        amount_in_wei = (amount*(10**token_decimals)).to_i
         if token_address.nil?
           data = "0x#{function_signature}0x#{'0'*64}#{padding(dec_to_hex(amount_in_wei))}"
         else
           data = "0x#{function_signature}#{padding(token_address)}#{padding(dec_to_hex(amount_in_wei))}"
         end
 
-        gas_limit = config[:collect_gas_limit] || config[:gas_limit]
-        gas_price = config[:collect_gas_price] || config[:gas_price]
+        gas_limit = TokenAdapter::Ethereum.collect_gas_limit || config[:collect_gas_limit]
+        gas_price = TokenAdapter::Ethereum.collect_gas_price || config[:collect_gas_price]
 
         txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: wallet_address)
         raise TxHashError, 'txhash is nil' unless txhash
@@ -156,9 +159,9 @@ module TokenAdapter
       private
 
       def from
-        exchange_address_priv = config[:exchange_address_priv]
-        exchange_address = config[:exchange_address]
-        exchange_address_passphrase = config[:exchange_address_passphrase]
+        exchange_address_priv = TokenAdapter::Ethereum.exchange_address_priv || config[:exchange_address_priv]
+        exchange_address = TokenAdapter::Ethereum.exchange_address || config[:exchange_address]
+        exchange_address_passphrase = TokenAdapter::Ethereum.exchange_address_passphrase || config[:exchange_address_passphrase]
         if exchange_address_priv
           from = exchange_address_priv
         else
@@ -178,7 +181,7 @@ module TokenAdapter
             from,
             to
         ]
-        return has_event_log?(receipt, config[:token_contract_address], topics, data)
+        return has_event_log?(receipt, token_contract_address, topics, data)
       end
 
       def has_event_log?(receipt, address, topics, data)
@@ -247,7 +250,7 @@ module TokenAdapter
       def send_transaction_to_internal(from, passphrase, value, data, gas_limit, gas_price, to = nil)
         personal_unlock_account(from, passphrase)
         if value
-          value_in_wei = (value * (10**config[:token_decimals])).to_i
+          value_in_wei = (value * (10**token_decimals)).to_i
           v = dec_to_hex(value_in_wei)
         else
           v = nil

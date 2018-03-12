@@ -2,28 +2,30 @@ module TokenAdapter
   module Ethereum
     class Erc20 < Eth
 
+      attr_accessor :token_contract_address
+
       def initialize(config)
         super(config)
       end
 
       def getbalance(account = nil)
-        account ||= config[:exchange_address]
+        account ||= (TokenAdapter::Ethereum.exchange_address || config[:exchange_address])
         function_signature = '70a08231' # Ethereum::Function.calc_id('balanceOf(address)') # 70a08231
         data = '0x' + function_signature + padding(account)
-        to = config[:token_contract_address]
+        to = token_contract_address
 
-        eth_call(to, data).to_i(16) / 10**config[:token_decimals]
+        eth_call(to, data).to_i(16) / 10**token_decimals
       end
 
       # 用户提币
       def sendtoaddress(address, amount)
         # 生成raw transaction
         function_signature = 'a9059cbb' # Ethereum::Function.calc_id('transfer(address,uint256)') # a9059cbb
-        amount_in_wei = (amount * (10**config[:token_decimals])).to_i
+        amount_in_wei = (amount * (10**token_decimals)).to_i
         data = '0x' + function_signature + padding(address) + padding(dec_to_hex(amount_in_wei))
-        gas_limit = config[:transfer_gas_limit] || config[:gas_limit]
-        gas_price = config[:transfer_gas_price] || config[:gas_price]
-        to = config[:token_contract_address]
+        gas_limit = TokenAdapter::Ethereum.transfer_gas_limit || config[:transfer_gas_limit]
+        gas_price = TokenAdapter::Ethereum.transfer_gas_price || config[:transfer_gas_price]
+        to = token_contract_address
 
         txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to)
         raise TxHashError, 'txhash is nil' unless txhash
@@ -50,7 +52,7 @@ module TokenAdapter
           {
             'account' => 'payment',
             'category' => 'receive',
-            'amount' => value.to_i(16) / 10.0**config[:token_decimals],
+            'amount' => value.to_i(16) / 10.0**token_decimals,
             'address' => "0x#{input[:params][0][24 .. input[:params][0].length-1]}"
           }
         ]
