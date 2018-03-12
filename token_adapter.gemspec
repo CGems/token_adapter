@@ -24,11 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "minitest", "~> 5.0"
-  spec.add_dependency "pattern-match", "1.0.1"
-  spec.add_dependency "eth", "0.4.4"
-  spec.add_dependency "etherscan", "0.1.3"
-  spec.add_dependency "infura", "0.1.0"
-  spec.add_dependency "remote_lock"
-  spec.add_dependency "redis"
-
+  spec.add_dependency "faraday", "0.14.0"
 end

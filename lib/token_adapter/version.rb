@@ -1,3 +1,3 @@
 module TokenAdapter
-  VERSION = "0.2.75"
+  VERSION = "0.2.77"
 end

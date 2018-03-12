@@ -3,18 +3,11 @@ module TokenAdapter
     class PendingTimeoutError < StandardError; end
     class TxHashError < StandardError; end
 
-    class << self
-      attr_accessor :provider
-    end
-
     class Eth < TokenAdapter::Base
+      include Provider::Rpc
 
       def initialize(config)
         super(config)
-        if TokenAdapter::Ethereum.provider.nil?
-          TokenAdapter::Ethereum.provider = Provider::Rpc
-        end
-        self.class.send(:include, TokenAdapter::Ethereum.provider)
         init_provider(config)
       end
   
