@@ -60,7 +60,7 @@ module TokenAdapter
         tx['receipt'] = receipt
 
         # 确认数
-        current_block_number = eth_block_number # 当前的高度
+        current_block_number = eth_block_number.to_i(16) # 当前的高度
         return nil unless current_block_number
         transaction_block_number = hex_to_dec(tx['blockNumber'])
         tx['confirmations'] = current_block_number - transaction_block_number
@@ -115,7 +115,7 @@ module TokenAdapter
 
       def get_balance(address)
         result = eth_get_balance(address)
-        result.to_f
+        result.to_i(16) / 10**18.0
       end
 
       def get_total_balance(addresses)
@@ -155,7 +155,8 @@ module TokenAdapter
 
         gas_price_in_dec = 5_000_000_000 if gas_price_in_dec < 5_000_000_000
 
-        nonce = nonce.nil? ? eth_get_transaction_count(address, 'pending') : nonce
+        nonce = nonce.nil? ? eth_get_transaction_count(address, 'pending').to_i(16) : nonce
+
         args = {
           from: address,
           value: 0,
@@ -236,8 +237,8 @@ module TokenAdapter
       def no_pending?(address)
         no_pending = false
         10.times do
-          transaction_count = eth_get_transaction_count(address)
-          pending_transaction_count = eth_get_transaction_count(address, 'pending')
+          transaction_count = eth_get_transaction_count(address).to_i(16)
+          pending_transaction_count = eth_get_transaction_count(address, 'pending').to_i(16)
           if transaction_count === pending_transaction_count
             no_pending = true
             break

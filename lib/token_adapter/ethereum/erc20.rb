@@ -12,7 +12,7 @@ module TokenAdapter
         data = '0x' + function_signature + padding(account)
         to = config[:token_contract_address]
 
-        eth_call(to, data) / 10**config[:token_decimals]
+        eth_call(to, data).to_i(16) / 10**config[:token_decimals]
       end
 
       # 用户提币

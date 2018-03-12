@@ -9,18 +9,15 @@ module TokenAdapter
         end
 
         def eth_get_balance(address)
-          result = fetch method: 'eth_getBalance', params: [address, 'latest']
-          result.to_i(16) / 10**18.0
+          fetch method: 'eth_getBalance', params: [address, 'latest']
         end
 
         def eth_get_transaction_count(address, tag = 'latest')
-          result = fetch method: 'eth_getTransactionCount', params: [address, tag]
-          result.to_i(16)
+          fetch method: 'eth_getTransactionCount', params: [address, tag]
         end
 
         def eth_call(to, data)
-          result = fetch method: 'eth_call', params: [{to: to, data: data}, 'latest']
-          result.to_i(16)
+          fetch method: 'eth_call', params: [{to: to, data: data}, 'latest']
         end
 
         def personal_unlock_account(address, passphrase)
@@ -70,8 +67,7 @@ module TokenAdapter
         end
 
         def eth_block_number
-          result = fetch method: 'eth_blockNumber', params: []
-          result.to_i(16)
+          fetch method: 'eth_blockNumber', params: []
         end
 
         def eth_get_block_by_number(block_number)
