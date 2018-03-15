@@ -36,8 +36,12 @@ require "token_adapter/ethereum/ncs"
 require "token_adapter/ethereum/sda"
 require "token_adapter/ethereum/icc"
 require "token_adapter/ethereum/mag"
+<<<<<<< HEAD
 require "token_adapter/ethereum/erc223"
 require "token_adapter/ethereum/ext"
+=======
+require "token_adapter/ethereum/fllw"
+>>>>>>> 5e0f314f8b6c80c7c0f6da3ec1a1c40600875e86
 require "token_adapter/btc"
 require "token_adapter/ltc"
 require "token_adapter/zec"
