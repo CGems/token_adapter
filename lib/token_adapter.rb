@@ -1,6 +1,7 @@
 require "json"
 require "faraday"
 require "eth"
+require "bip44"
 
 module TokenAdapter
   class << self

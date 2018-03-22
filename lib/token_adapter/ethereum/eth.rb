@@ -20,22 +20,10 @@ module TokenAdapter
         get_balance(account)
       end
   
-      def getnewaddress(account, passphrase)
-        data = '0xa9b1d507' # Ethereum::Function.calc_id('makeWallet()')
-        gas_limit = TokenAdapter::Ethereum.newaddress_gas_limit || config[:newaddress_gas_limit]
-        gas_price = TokenAdapter::Ethereum.newaddress_gas_price || config[:newaddress_gas_price]
-        address_contract_address = TokenAdapter::Ethereum.contract_address || config[:contract_address]
-
-        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: address_contract_address)
-        raise TxHashError, 'txhash is nil' unless txhash
-
-        # 等待上链
-        wait_for_miner(txhash)
-
-        # 从回执的logs里找
-        receipt = eth_get_transaction_receipt(txhash)
-        return nil unless ( receipt && receipt['logs'] && receipt['logs'][0] && receipt['logs'][0]['data'] )
-        return eth_address(receipt['logs'][0]['data']), txhash
+      def getnewaddress(index, passphrase)
+        xpub = TokenAdapter::Ethereum.xpub || config[:xpub]
+        wallet = Bip44::Wallet.from_xpub(xpub)
+        wallet.get_ethereum_address("M/#{index}")
       end
 
       # 用户提币
