@@ -3,7 +3,7 @@ module TokenAdapter
     include TokenAdapter::JsonRpc
 
     #propertyid
-    USDT_PROPERTY_ID = '31'
+    USDT_PROPERTY_ID = 31
 
     def initialize(config)
       super(config)
@@ -23,7 +23,18 @@ module TokenAdapter
     end
 
     def gettransaction(txid)
-      return fetch(method: 'omni_gettransaction', params: [txid]), nil
+      tx = fetch(method: 'omni_gettransaction', params: [txid]), nil
+      tx['timereceived'] = tx['blocktime']
+      # 保持和btc返回结构一致
+      tx['details'] = [
+        {
+          'account' => 'payment',
+          'category' => 'receive',
+          'amount' => tx['amount'],
+          'address' => tx['referenceaddress']
+        }
+      ]
+      tx
     end
 
     def method_missing(name, *args)
