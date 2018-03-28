@@ -23,7 +23,7 @@ module TokenAdapter
     end
 
     def gettransaction(txid)
-      tx = fetch(method: 'omni_gettransaction', params: [txid]), nil
+      tx = fetch(method: 'omni_gettransaction', params: [txid])
       tx['timereceived'] = tx['blocktime']
       # 保持和btc返回结构一致
       tx['details'] = [
