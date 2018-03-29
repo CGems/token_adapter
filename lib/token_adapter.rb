@@ -40,6 +40,7 @@ require "token_adapter/ethereum/mag"
 require "token_adapter/ethereum/erc223"
 require "token_adapter/ethereum/ext"
 require "token_adapter/ethereum/fllw"
+require "token_adapter/ethereum/wbt"
 
 require "token_adapter/btc"
 require "token_adapter/ltc"
