@@ -47,7 +47,7 @@ module TokenAdapter
     private
 
     def from
-      from = config[:assets][:accounts][0][:address]
+      from = config[:assets]['accounts'][0]['address']
       from
     end
   end
