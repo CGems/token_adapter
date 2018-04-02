@@ -13,7 +13,8 @@ module TokenAdapter
 
     def getbalance(address = nil)
       address ||= from
-      return fetch(method: 'omni_getbalance', params: [address, USDT_PROPERTY_ID]), nil
+      balance_info = fetch(method: 'omni_getbalance', params: [address, USDT_PROPERTY_ID])
+      return balance_info['balance']
     end
 
     def settxfee(fee)
