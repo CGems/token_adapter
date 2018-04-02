@@ -11,7 +11,8 @@ module TokenAdapter
       @rpc = config[:rpc]
     end
 
-    def getbalance(address)
+    def getbalance(address = nil)
+      address ||= from
       return fetch(method: 'omni_getbalance', params: [address, USDT_PROPERTY_ID]), nil
     end
 
