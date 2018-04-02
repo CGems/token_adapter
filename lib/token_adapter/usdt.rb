@@ -22,7 +22,9 @@ module TokenAdapter
     end
 
     def sendtoaddress(address, amount)
-      return fetch(method: 'omni_send', params: [from, address, USDT_PROPERTY_ID, amount]), nil
+      txhash = fetch(method: 'omni_send', params: [from, address, USDT_PROPERTY_ID, amount])
+      raise TxHashError, 'txhash is nil' unless txhash
+      txhash
     end
 
     def gettransaction(txid)
