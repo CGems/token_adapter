@@ -19,6 +19,10 @@ module TokenAdapter
       account ||= 'payment'
       return fetch(method: 'getaddressesbyaccount', params: [account.to_s])
     end
+    
+    def getreceivedbyaddress(address)
+      return fetch(method: 'getaddressesbyaccount', params: [address])
+    end
 
     def transaction_status(txid)
       :successed
