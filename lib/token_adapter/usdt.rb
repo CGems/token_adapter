@@ -26,6 +26,12 @@ module TokenAdapter
       raise TxHashError, 'txhash is nil' unless txhash
       txhash
     end
+    
+    def wallet_collect(address, amount)
+      txhash = fetch(method: 'omni_send', params: [address, from, USDT_PROPERTY_ID, amount.to_s])
+      raise TxHashError, 'txhash is nil' unless txhash
+      txhash
+    end
 
     def gettransaction(txid)
       tx = fetch(method: 'omni_gettransaction', params: [txid])
