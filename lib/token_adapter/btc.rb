@@ -21,7 +21,7 @@ module TokenAdapter
     end
     
     def getreceivedbyaddress(address)
-      return fetch(method: 'getaddressesbyaccount', params: [address])
+      return fetch(method: 'getreceivedbyaddress', params: [address])
     end
 
     def transaction_status(txid)
