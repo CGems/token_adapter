@@ -36,7 +36,7 @@ module TokenAdapter
     def gettransaction(txid)
       tx = fetch(method: 'omni_gettransaction', params: [txid])
       raise UnsupportedProperty, 'Unsupported property' if tx['propertyid'] != USDT_PROPERTY_ID
-      tx['timereceived'] = tx['blocktime']
+      tx['timereceived'] = tx['blocktime'] || Time.now.to_i
       # 保持和btc返回结构一致
       tx['details'] = [
         {
