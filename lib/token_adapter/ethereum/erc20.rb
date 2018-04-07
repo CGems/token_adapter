@@ -9,7 +9,7 @@ module TokenAdapter
       end
 
       def getbalance(account = nil)
-        account ||= (TokenAdapter::Ethereum.exchange_address || config[:exchange_address])
+        account ||= (config[:exchange_address] || TokenAdapter::Ethereum.exchange_address)
         function_signature = '70a08231' # Ethereum::Function.calc_id('balanceOf(address)') # 70a08231
         data = '0x' + function_signature + padding(account)
         to = token_contract_address
@@ -23,8 +23,8 @@ module TokenAdapter
         function_signature = 'a9059cbb' # Ethereum::Function.calc_id('transfer(address,uint256)') # a9059cbb
         amount_in_wei = (amount * (10**token_decimals)).to_i
         data = '0x' + function_signature + padding(address) + padding(dec_to_hex(amount_in_wei))
-        gas_limit = TokenAdapter::Ethereum.transfer_gas_limit || config[:transfer_gas_limit]
-        gas_price = TokenAdapter::Ethereum.transfer_gas_price || config[:transfer_gas_price]
+        gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit 
+        gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
         to = token_contract_address
 
         txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to)

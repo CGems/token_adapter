@@ -16,7 +16,7 @@ module TokenAdapter
   
       # 获取交易所的地址上币
       def getbalance(account = nil)
-        account ||= (TokenAdapter::Ethereum.exchange_address || config[:exchange_address])
+        account ||= (config[:exchange_address] || TokenAdapter::Ethereum.exchange_address)
         get_balance(account)
       end
   
@@ -28,8 +28,8 @@ module TokenAdapter
 
       # 用户提币
       def sendtoaddress(address, amount)
-        gas_limit = TokenAdapter::Ethereum.transfer_gas_limit || config[:transfer_gas_limit]
-        gas_price = TokenAdapter::Ethereum.transfer_gas_price || config[:transfer_gas_price]
+        gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit
+        gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
 
         txhash = send_transaction(from: from, value: amount, gas_limit: gas_limit, gas_price: gas_price, to: address)
         raise TxHashError, 'txhash is nil' unless txhash
@@ -94,8 +94,8 @@ module TokenAdapter
           data = "0x#{function_signature}#{padding(token_address)}#{padding(dec_to_hex(amount_in_wei))}"
         end
 
-        gas_limit = TokenAdapter::Ethereum.collect_gas_limit || config[:collect_gas_limit]
-        gas_price = TokenAdapter::Ethereum.collect_gas_price || config[:collect_gas_price]
+        gas_limit = config[:collect_gas_limit] || TokenAdapter::Ethereum.collect_gas_limit
+        gas_price = config[:collect_gas_price] || TokenAdapter::Ethereum.collect_gas_price
 
         txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: wallet_address)
         raise TxHashError, 'txhash is nil' unless txhash
@@ -147,9 +147,9 @@ module TokenAdapter
       private
 
       def from
-        exchange_address_priv = TokenAdapter::Ethereum.exchange_address_priv || config[:exchange_address_priv]
-        exchange_address = TokenAdapter::Ethereum.exchange_address || config[:exchange_address]
-        exchange_address_passphrase = TokenAdapter::Ethereum.exchange_address_passphrase || config[:exchange_address_passphrase]
+        exchange_address_priv = config[:exchange_address_priv] || TokenAdapter::Ethereum.exchange_address_priv
+        exchange_address = config[:exchange_address] || TokenAdapter::Ethereum.exchange_address
+        exchange_address_passphrase = config[:exchange_address_passphrase] || TokenAdapter::Ethereum.exchange_address_passphrase
         if exchange_address_priv
           from = exchange_address_priv
         else
