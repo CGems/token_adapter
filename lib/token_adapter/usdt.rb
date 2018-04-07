@@ -11,8 +11,10 @@ module TokenAdapter
       @rpc = config[:rpc]
     end
 
-    def getbalance(address)
-      return fetch(method: 'omni_getbalance', params: [address, USDT_PROPERTY_ID]), nil
+    def getbalance(address = nil)
+      address ||= from
+      balance_info = fetch(method: 'omni_getbalance', params: [address, USDT_PROPERTY_ID])
+      return balance_info['balance']
     end
 
     def settxfee(fee)
@@ -20,13 +22,21 @@ module TokenAdapter
     end
 
     def sendtoaddress(address, amount)
-      return fetch(method: 'omni_send', params: [from, address, USDT_PROPERTY_ID, amount]), nil
+      txhash = fetch(method: 'omni_send', params: [from, address, USDT_PROPERTY_ID, amount.to_s])
+      raise TxHashError, 'txhash is nil' unless txhash
+      txhash
+    end
+    
+    def wallet_collect(address, amount)
+      txhash = fetch(method: 'omni_send', params: [address, from, USDT_PROPERTY_ID, amount.to_s])
+      raise TxHashError, 'txhash is nil' unless txhash
+      txhash
     end
 
     def gettransaction(txid)
       tx = fetch(method: 'omni_gettransaction', params: [txid])
       raise UnsupportedProperty, 'Unsupported property' if tx['propertyid'] != USDT_PROPERTY_ID
-      tx['timereceived'] = tx['blocktime']
+      tx['timereceived'] = tx['blocktime'] || Time.now.to_i
       # 保持和btc返回结构一致
       tx['details'] = [
         {
@@ -46,7 +56,7 @@ module TokenAdapter
     private
 
     def from
-      from = config[:assets][:accounts][0][:address]
+      from = config[:assets]['accounts'][0]['address']
       from
     end
   end

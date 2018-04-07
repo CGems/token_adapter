@@ -14,6 +14,15 @@ module TokenAdapter
     def settxfee(fee)
       # do nothing
     end
+    
+    def getaddressesbyaccount(account = nil)
+      account ||= 'payment'
+      return fetch(method: 'getaddressesbyaccount', params: [account.to_s])
+    end
+    
+    def getreceivedbyaddress(address)
+      return fetch(method: 'getreceivedbyaddress', params: [address])
+    end
 
     def transaction_status(txid)
       :successed
