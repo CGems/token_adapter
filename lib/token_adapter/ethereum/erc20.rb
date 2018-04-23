@@ -18,16 +18,14 @@ module TokenAdapter
       end
 
       # 用户提币
-      def sendtoaddress(address, amount, from_address=nil)
+      def sendtoaddress(address, amount)
         # 生成raw transaction
-        function_signature = 'a9059cbb' # Ethereum::Function.calc_id('transfer(address,uint256)') # a9059cbb
-        amount_in_wei = (amount * (10**token_decimals)).to_i
-        data = '0x' + function_signature + padding(address) + padding(dec_to_hex(amount_in_wei))
+        data = build_data(address, amount)
         gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit 
         gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
         to = token_contract_address
 
-        txhash = send_transaction(from: from_address || from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to)
+        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to)
         raise TxHashError, 'txhash is nil' unless txhash
         txhash
       end
@@ -58,6 +56,20 @@ module TokenAdapter
         ]
 
         return tx
+      end
+
+      def build_data(address, amount)
+        function_signature = 'a9059cbb' # Ethereum::Function.calc_id('transfer(address,uint256)') # a9059cbb
+        amount_in_wei = (amount * (10**token_decimals)).to_i
+        '0x' + function_signature + padding(address) + padding(dec_to_hex(amount_in_wei))
+      end
+
+      def transfer_token(private_key, token_address, token_decimals, amount, gas_limit, gas_price, to)
+        data = build_data(to, amount)
+
+        #生成签名交易
+        raw_tx = generate_raw_transaction(private_key, nil, data, gas_limit, gas_price, token_address)
+        eth_send_raw_transaction(raw_tx)
       end
 
     end
