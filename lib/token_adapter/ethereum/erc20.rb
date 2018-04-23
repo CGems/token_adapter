@@ -18,7 +18,7 @@ module TokenAdapter
       end
 
       # 用户提币
-      def sendtoaddress(address, amount)
+      def sendtoaddress(address, amount, from_address=nil)
         # 生成raw transaction
         function_signature = 'a9059cbb' # Ethereum::Function.calc_id('transfer(address,uint256)') # a9059cbb
         amount_in_wei = (amount * (10**token_decimals)).to_i
@@ -27,7 +27,7 @@ module TokenAdapter
         gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
         to = token_contract_address
 
-        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to)
+        txhash = send_transaction(from: from_address || from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to)
         raise TxHashError, 'txhash is nil' unless txhash
         txhash
       end
