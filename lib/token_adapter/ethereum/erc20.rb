@@ -18,14 +18,14 @@ module TokenAdapter
       end
 
       # 用户提币
-      def sendtoaddress(address, amount)
+      def sendtoaddress(address, amount, nonce = nil)
         # 生成raw transaction
         data = build_data(address, amount)
         gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit 
         gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
         to = token_contract_address
 
-        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to)
+        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to, nonce)
         raise TxHashError, 'txhash is nil' unless txhash
         txhash
       end
