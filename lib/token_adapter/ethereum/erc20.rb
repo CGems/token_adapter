@@ -33,7 +33,7 @@ module TokenAdapter
       def generate_rawtx_with_nonce(address, amount, nonce, id = nil)
         gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit
         gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
-        data = build_data(arg[:address], arg[:amount])
+        data = build_data(address, amount)
         rawtx = generate_raw_transaction(from, nil, data, gas_limit, gas_price, token_contract_address, nonce)
         { method: 'eth_sendRawTransaction', params: [ rawtx ], id: id || 1 }
       end
