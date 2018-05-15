@@ -36,6 +36,13 @@ module TokenAdapter
         txhash
       end
 
+      def generate_rawtx_with_nonce(address, amount, nonce, id = nil)
+        gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit
+        gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
+        rawtx = generate_raw_transaction(from, amount, '0x0', gas_limit, gas_price, address, nonce)
+        { method: 'eth_sendRawTransaction', params: [ rawtx ], id: id || 1 }
+      end
+
       # 用于充值，自己添加的属性，数字是10进制的（原始的是字符串形式的16进制）
       # 严格判断
       def gettransaction(txid)
