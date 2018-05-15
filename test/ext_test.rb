@@ -18,10 +18,10 @@ class ExtTest < Minitest::Test
     @api = TokenAdapter::Ethereum::Ext.new(@config)
   end
 
-  def test_getnewaddress
-    address = @api.getnewaddress(1, '')
-    assert_equal '0x197b021335cabe47bc1be183d6e444e8063900ae', address
-  end
+  # def test_getnewaddress
+  #   address = @api.getnewaddress(1, '')
+  #   assert_equal '0x197b021335cabe47bc1be183d6e444e8063900ae', address
+  # end
 
   # def test_sendtoaddress
   #   txhash = @api.sendtoaddress('0xE7DdCa8F81F051330CA748E82682b1Aa4cd8054F', 5)

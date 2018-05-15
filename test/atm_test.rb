@@ -15,12 +15,13 @@ class AtmTest < Minitest::Test
 
         rpc: 'https://ropsten.infura.io/fEgf2OPCz9nuea7QCvxn'
     }
-    @eth = TokenAdapter::Ethereum::Atm.new(@config)
+    @atm = TokenAdapter::Ethereum::Atm.new(@config)
   end
 
   # def test_getbalance
-  #   result = @eth.getbalance
-  #   puts result
+  #   result = @atm.getbalance
+  #   puts '--------------------------'
+  #   puts result.class
   #   assert_equal true, result > 0
   # end
 
@@ -31,7 +32,7 @@ class AtmTest < Minitest::Test
   # end
 
   # def test_sendtoaddress
-  #   txhash = @eth.sendtoaddress('0xE7DdCa8F81F051330CA748E82682b1Aa4cd8054F', 5)
+  #   txhash = @eth.sendtoaddress('0xE7DdCa8F81F051330CA748E82682b1Aa4cd8054F', 100)
   #   assert_kind_of String, txhash
   #   assert_match /^0x[a-f0-9]*/, txhash
   #   puts txhash
@@ -39,6 +40,7 @@ class AtmTest < Minitest::Test
 
   # def test_gettransaction
   #   tx = @eth.gettransaction('0xecc376e9d3842df96dab11ad03b4c15ee678ed152d250c2c4233774078ba7671')
+  #   puts tx
   #   assert_equal false, tx.nil?
   # end
 end
