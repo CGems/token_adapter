@@ -49,7 +49,7 @@ module TokenAdapter
         req.headers['Content-Type'] = 'application/json'
         req.body = params.to_json
       end
-      if resp.status == 200
+      if resp && resp.status == 200
         data = JSON.parse(resp.body)
       else
         data = []
