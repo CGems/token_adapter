@@ -59,7 +59,7 @@ module TokenAdapter
         # 上链时间
         block = eth_get_block_by_number(tx['blockNumber'])
         if block
-          tx['timereceived'] = hex_to_dec(block['timestamp'])
+          tx['timereceived'] = (hex_to_dec(block['timestamp']) / ( 1000 ** 3)).to_i
         else
           tx['timereceived'] = Time.now.to_i
         end
