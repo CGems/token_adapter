@@ -1,6 +1,5 @@
 module TokenAdapter
   module JsonRpc
-    extend self
 
     def conn
       @conn ||= Faraday.new(url: @rpc)
@@ -44,13 +43,17 @@ module TokenAdapter
           "params"  => arg[:params],
           "id"      => arg[:id]
         }
-      end.join
+      end
+
       resp = conn.post do |req|
         req.headers['Content-Type'] = 'application/json'
-        req.body = params
+        req.body = params.to_json
       end
-      JSON.parse(resp.body)
+      if resp.status == 200
+        data = JSON.parse(resp.body)
+      else
+        data = []
+      end
     end
-
   end
 end

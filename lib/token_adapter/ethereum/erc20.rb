@@ -25,7 +25,7 @@ module TokenAdapter
         gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
         to = token_contract_address
 
-        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to, nonce)
+        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to, nonce: nonce)
         raise TxHashError, 'txhash is nil' unless txhash
         txhash
       end
