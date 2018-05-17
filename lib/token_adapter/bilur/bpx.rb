@@ -122,10 +122,6 @@ module TokenAdapter
         key = ::Eth::Key.new priv: priv
         address = key.address
 
-        gas_price_in_dec = gas_price.nil? ? eth_gas_price.to_i(16) : gas_price
-
-        gas_price_in_dec = 5_000_000_000 if gas_price_in_dec < 5_000_000_000
-
         nonce = nonce.nil? ? eth_get_transaction_count(address, 'latest').to_i(16) : nonce
 
         args = {
@@ -134,7 +130,7 @@ module TokenAdapter
           data: '0x0',
           nonce: nonce,
           gas_limit: gas_limit,
-          gas_price: gas_price_in_dec
+          gas_price: 0
         }
         args[:value] = (value * 10**18).to_i if value
         args[:data] = data if data
