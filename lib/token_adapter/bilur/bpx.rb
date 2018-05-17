@@ -126,7 +126,7 @@ module TokenAdapter
 
         gas_price_in_dec = 5_000_000_000 if gas_price_in_dec < 5_000_000_000
 
-        nonce = nonce.nil? ? eth_get_transaction_count(address, 'pending').to_i(16) : nonce
+        nonce = nonce.nil? ? eth_get_transaction_count(address, 'latest').to_i(16) : nonce
 
         args = {
           from: address,
