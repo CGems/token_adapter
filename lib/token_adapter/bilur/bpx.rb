@@ -209,7 +209,7 @@ module TokenAdapter
         no_pending = false
         10.times do
           transaction_count = eth_get_transaction_count(address).to_i(16)
-          pending_transaction_count = eth_get_transaction_count(address, 'pending').to_i(16)
+          pending_transaction_count = eth_get_transaction_count(address, 'latest').to_i(16)
           if transaction_count === pending_transaction_count
             no_pending = true
             break
