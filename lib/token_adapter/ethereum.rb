@@ -7,6 +7,9 @@ module TokenAdapter
                     :transfer_gas_limit, :transfer_gas_price,
                     :collect_gas_limit, :collect_gas_price,
                     :xpub
+
+
+      
     end
   end
 end

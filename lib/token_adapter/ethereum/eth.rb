@@ -27,13 +27,20 @@ module TokenAdapter
       end
 
       # 用户提币
-      def sendtoaddress(address, amount)
+      def sendtoaddress(address, amount, nonce = nil)
         gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit
         gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
 
-        txhash = send_transaction(from: from, value: amount, gas_limit: gas_limit, gas_price: gas_price, to: address)
+        txhash = send_transaction(from: from, value: amount, gas_limit: gas_limit, gas_price: gas_price, to: address, nonce: nonce)
         raise TxHashError, 'txhash is nil' unless txhash
         txhash
+      end
+
+      def generate_rawtx_with_nonce(address, amount, nonce, id = nil)
+        gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit
+        gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
+        rawtx = generate_raw_transaction(from, amount, '0x0', gas_limit, gas_price, address, nonce)
+        { method: 'eth_sendRawTransaction', params: [ rawtx ], id: id || 1 }
       end
 
       # 用于充值，自己添加的属性，数字是10进制的（原始的是字符串形式的16进制）
@@ -220,17 +227,17 @@ module TokenAdapter
         return no_pending
       end
 
-      def send_transaction(from: nil, value: nil, data: nil, gas_limit: nil, gas_price: nil, to: nil)
+      def send_transaction(from: nil, value: nil, data: nil, gas_limit: nil, gas_price: nil, to: nil, nonce: nil)
         if from.is_a? String
-          send_transaction_to_external(from, value, data, gas_limit, gas_price, to)
+          send_transaction_to_external(from, value, data, gas_limit, gas_price, to, nonce)
         else
           send_transaction_to_internal(from[:address], from[:passphrase], value, data, gas_limit, gas_price, to)
         end
 
       end
 
-      def send_transaction_to_external(priv, value, data, gas_limit, gas_price, to = nil)
-        rawtx = generate_raw_transaction(priv, value, data, gas_limit, gas_price, to)
+      def send_transaction_to_external(priv, value, data, gas_limit, gas_price, to = nil, nonce = nil)
+        rawtx = generate_raw_transaction(priv, value, data, gas_limit, gas_price, to, nonce)
         txhash = eth_send_raw_transaction(rawtx) if rawtx
         return txhash
       end

@@ -29,5 +29,31 @@ module TokenAdapter
     rescue Errno::ECONNREFUSED => e
       raise TokenAdapter::JSONRPCError, e.message
     end
+
+    # params example: 
+    # [ 
+    #   { method: 'eth_sendRawTransaction', params: [ "xxx" ], id: 1 },
+    #   { method: 'eth_sendRawTransaction', params: [ "xxx" ], id: 2 }
+    # ]
+    def batch_fetch(args)
+      params = args.collect do |arg|
+        {
+          "jsonrpc" => "2.0",
+          "method"  => arg[:method],
+          "params"  => arg[:params],
+          "id"      => arg[:id]
+        }
+      end
+
+      resp = conn.post do |req|
+        req.headers['Content-Type'] = 'application/json'
+        req.body = params.to_json
+      end
+      if resp && resp.status == 200
+        data = JSON.parse(resp.body)
+      else
+        data = []
+      end
+    end
   end
 end
