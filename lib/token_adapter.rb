@@ -44,6 +44,7 @@ require "token_adapter/ethereum/wbt"
 require "token_adapter/ethereum/gst"
 require "token_adapter/ethereum/moac"
 require "token_adapter/ethereum/ser"
+require "token_adapter/ethereum/gve"
 
 require "token_adapter/btc"
 require "token_adapter/ltc"
