@@ -54,3 +54,7 @@ require "token_adapter/usdt"
 require "token_adapter/bilur/provider/rpc"
 require "token_adapter/bilur"
 require "token_adapter/bilur/bpx"
+
+require "token_adapter/moac/provider/rpc"
+require "token_adapter/moac"
+require "token_adapter/moac/moac"
