@@ -47,6 +47,9 @@ require "token_adapter/ethereum/ser"
 require "token_adapter/ethereum/gve"
 require "token_adapter/ethereum/cnyr"
 require "token_adapter/ethereum/gsc"
+require "token_adapter/ethereum/lga"
+require "token_adapter/ethereum/cmt"
+
 
 require "token_adapter/btc"
 require "token_adapter/ltc"
