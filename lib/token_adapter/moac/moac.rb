@@ -129,16 +129,20 @@ module TokenAdapter
 
         args = {
             from: address,
-            value: 0,
-            data: '0x0',
             nonce: nonce,
+            systemContract: 0,
+            gas_price: gas_price_in_dec,
             gas_limit: gas_limit,
-            gas_price: gas_price_in_dec
+            to: to,
+            value: (value.to_f * 10**18).to_i,
+            data:  '0x00'
         }
-        args[:value] = (value * 10**18).to_i if value
-        args[:data] = data if data
-        args[:to] = to if to
-        tx = ::Eth::Tx.new(args)
+
+        args[:data]  = data if data
+        args[:shardingFlag] = 0
+        args[:via]          = ""
+
+        tx = ::Eth::MoacTx.new args
         tx.sign key
         tx.hex
       end
