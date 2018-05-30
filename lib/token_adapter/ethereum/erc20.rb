@@ -14,20 +14,28 @@ module TokenAdapter
         data = '0x' + function_signature + padding(account)
         to = token_contract_address
 
-        eth_call(to, data).to_i(16) / 10**token_decimals
+        eth_call(to, data).to_i(16) / 10.0**token_decimals
       end
 
       # 用户提币
-      def sendtoaddress(address, amount)
+      def sendtoaddress(address, amount, nonce = nil)
         # 生成raw transaction
         data = build_data(address, amount)
         gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit 
         gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
         to = token_contract_address
 
-        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to)
+        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to, nonce: nonce)
         raise TxHashError, 'txhash is nil' unless txhash
         txhash
+      end
+
+      def generate_rawtx_with_nonce(address, amount, nonce, id = nil)
+        gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit
+        gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
+        data = build_data(address, amount)
+        rawtx = generate_raw_transaction(from, nil, data, gas_limit, gas_price, token_contract_address, nonce)
+        { method: 'eth_sendRawTransaction', params: [ rawtx ], id: id || 1 }
       end
 
       # 用于充值，严格判断
