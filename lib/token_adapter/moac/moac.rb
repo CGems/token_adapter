@@ -118,7 +118,7 @@ module TokenAdapter
       # nil or rawtx
       def generate_raw_transaction(priv, value, data, gas_limit, gas_price, to = nil, nonce = nil)
 
-        key = ::MoacEth::Key.new priv: priv
+        key = ::Moac::Key.new priv: priv
         address = key.address
 
         gas_price_in_dec = gas_price.nil? ? eth_gas_price.to_i(16) : gas_price
@@ -142,7 +142,7 @@ module TokenAdapter
         args[:shardingFlag] = 0
         args[:via]          = ""
 
-        tx = ::MoacEth::Tx.new args
+        tx = ::Moac::Tx.new args
         tx.sign key
         tx.hex
       end
