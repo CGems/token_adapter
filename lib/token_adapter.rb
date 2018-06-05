@@ -49,6 +49,7 @@ require "token_adapter/ethereum/cnyr"
 require "token_adapter/ethereum/gsc"
 require "token_adapter/ethereum/lga"
 require "token_adapter/ethereum/cmt"
+require "token_adapter/ethereum/xcc"
 
 
 require "token_adapter/btc"
