@@ -3,7 +3,7 @@ module TokenAdapter
     class Bkc < Erc20
       def initialize(config)
         super(config)
-        @token_contract_address = '0x9fab652abd7651e7f46d18522ee4710d9214f8a8'
+        @token_contract_address = '0x262377e5956f2fc32d8024c0c9282fe0c53da24c'
         @token_decimals = 8
       end
     end
