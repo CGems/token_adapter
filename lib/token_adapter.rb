@@ -53,6 +53,7 @@ require "token_adapter/ethereum/xcc"
 require "token_adapter/ethereum/bkc"
 require "token_adapter/ethereum/datx"
 require "token_adapter/ethereum/mvp"
+require "token_adapter/ethereum/hb"
 
 
 require "token_adapter/btc"
