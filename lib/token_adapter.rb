@@ -2,6 +2,7 @@ require "json"
 require "faraday"
 require "eth"
 require "bip44"
+require 'bigdecimal'
 
 module TokenAdapter
   class << self
