@@ -106,7 +106,7 @@ module TokenAdapter
 
       def get_balance(address)
         result = eth_get_balance(address)
-        result.to_i(16) / 10**18.0
+        BigDecimal(result.to_i(16)) / BigDecimal(10**18.0)
       end
 
       def get_total_balance(addresses)
