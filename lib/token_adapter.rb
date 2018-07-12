@@ -63,6 +63,7 @@ require "token_adapter/ltc"
 require "token_adapter/zec"
 require "token_adapter/doge"
 require "token_adapter/usdt"
+require "token_adapter/sic"
 
 require "token_adapter/bilur/provider/rpc"
 require "token_adapter/bilur"
