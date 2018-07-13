@@ -56,6 +56,7 @@ require "token_adapter/ethereum/datx"
 require "token_adapter/ethereum/mvp"
 require "token_adapter/ethereum/hb"
 require "token_adapter/ethereum/egretia"
+require "token_adapter/ethereum/mxm"
 
 
 require "token_adapter/btc"
