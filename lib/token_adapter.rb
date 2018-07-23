@@ -70,6 +70,8 @@ require "token_adapter/bilur/provider/rpc"
 require "token_adapter/bilur"
 require "token_adapter/bilur/bpx"
 require "token_adapter/bilur/erc20"
+# erc40为需要支付基础货币的token
+require "token_adapter/bilur/erc40"
 require "token_adapter/bilur/mox"
 require "token_adapter/bilur/nzh"
 
