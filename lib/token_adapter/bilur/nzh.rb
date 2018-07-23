@@ -1,6 +1,6 @@
 module TokenAdapter
   module Bilur
-    class Nzh < Erc20
+    class Nzh < Erc40
       def initialize(config)
         super(config)
         @token_contract_address = ''

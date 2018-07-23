@@ -1,6 +1,6 @@
 module TokenAdapter
   module Bilur
-    class Mox < Erc20
+    class Mox < Erc40
       def initialize(config)
         super(config)
         @token_contract_address = ''
