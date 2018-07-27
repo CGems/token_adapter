@@ -6,8 +6,8 @@ module TokenAdapter
       def sendtoaddress(address, amount, nonce = nil)
         # 生成raw transaction
         data = build_data(address, amount)
-        gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit 
-        gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
+        gas_limit = config[:transfer_gas_limit] || TokenAdapter::Bilur.transfer_gas_limit
+        gas_price = config[:transfer_gas_price] || TokenAdapter::Bilur.transfer_gas_price
         to = token_contract_address
 
         # 计算转币需要支付的基础货币bpx
