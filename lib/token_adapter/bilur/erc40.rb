@@ -13,7 +13,7 @@ module TokenAdapter
         # 计算转币需要支付的基础货币bpx
         fee = get_transfer_fee(amount)
 
-        txhash = send_transaction(from: from, value: fee, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to, nonce: nonce)
+        txhash = send_transaction(from: from, value: fee, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to)
         raise TxHashError, 'txhash is nil' unless txhash
         txhash
       end
