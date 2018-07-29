@@ -26,16 +26,32 @@ module TokenAdapter
     end
 
     def gettransaction(txid)
-      result = http_get '/api/v1/withdrawals/' + txid
-      result['timereceived'] = result['updated_at']
-      result
+      if txid.length == 18 # 提币因为是异步的，所以这里只能是sn
+        result = http_get '/api/v1/withdrawals/' + txid
+        result['timereceived'] = result['created_at']
+        result
+      else
+        result = http_get '/api/v1/transactions/' + txid
+        result['timereceived'] = result['blocktime']
+        result['details'] = [
+            {
+                'account' => 'payment',
+                'category' => 'receive',
+                'amount' => result['amount'],
+                'address' => result['referenceaddress']
+            }
+        ]
+        result
+      end
+    end
+
+    def validateaddress(address)
+      {isvalid: true, ismine: false}
     end
 
     def settxfee(fee)
       # do nothing
     end
-
-    private
 
     def http_get(url)
       response = @conn.get url 
