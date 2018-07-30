@@ -13,13 +13,13 @@ module TokenAdapter
         init_provider(TokenAdapter::Bilur.rpc_endpoint || config[:rpc])
         token_decimals = 18
       end
-  
+
       # 获取交易所的地址上币
       def getbalance(account = nil)
         account ||= (config[:exchange_address] || TokenAdapter::Bilur.exchange_address)
         get_balance(account)
       end
-  
+
       def getnewaddress(index, passphrase)
         xpub = TokenAdapter::Bilur.xpub || config[:xpub]
         wallet = Bip44::Wallet.from_xpub(xpub)
@@ -66,12 +66,12 @@ module TokenAdapter
 
         # 数量 和 地址
         tx['details'] = [
-          {
-            'account' => 'payment',
-            'category' => 'receive',
-            'amount' => hex_wei_to_dec_eth(tx['value']),
-            'address' => tx['to']
-          }
+            {
+                'account' => 'payment',
+                'category' => 'receive',
+                'amount' => hex_wei_to_dec_eth(tx['value']),
+                'address' => tx['to']
+            }
         ]
 
         return tx
@@ -125,12 +125,12 @@ module TokenAdapter
         nonce = nonce.nil? ? eth_get_transaction_count(address, 'latest').to_i(16) : nonce
 
         args = {
-          from: address,
-          value: 0,
-          data: '0x0',
-          nonce: nonce,
-          gas_limit: gas_limit,
-          gas_price: 0
+            from: address,
+            value: 0,
+            data: '0x0',
+            nonce: nonce,
+            gas_limit: gas_limit,
+            gas_price: 0
         }
         args[:value] = (value * 10**18).to_i if value
         args[:data] = data if data
