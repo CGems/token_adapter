@@ -31,6 +31,8 @@ module TokenAdapter
           result = http_get '/api/v1/withdrawals/' + txid
           return nil if result['error']
 
+          return nil unless result['state'] == 'done'
+
           result['timereceived'] = result['created_at']
           return result
         elsif txid.start_with? 'd'
