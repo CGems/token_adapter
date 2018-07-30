@@ -46,6 +46,7 @@ module TokenAdapter
                   'address' => result['address']
               }
           ]
+          return result
         else
           return nil
         end
