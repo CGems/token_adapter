@@ -22,7 +22,7 @@ module TokenAdapter
         fee_rate = get_fee_rate
         fee_max = get_fee_max / BigDecimal(10**18)
         fee_min = get_fee_min / BigDecimal(10**18)
-        fee = BigDecimal(token_amount) / BigDecimal(fee_rate)
+        fee = BigDecimal(token_amount.to_s) / BigDecimal(fee_rate)
         if fee < fee_min
           return fee_min
         end
