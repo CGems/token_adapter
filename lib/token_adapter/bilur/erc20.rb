@@ -9,7 +9,7 @@ module TokenAdapter
       end
 
       def getbalance(account = nil)
-        account ||= (config[:exchange_address] || TokenAdapter::Ethereum.exchange_address)
+        account ||= (config[:exchange_address] || TokenAdapter::Bilur.exchange_address)
         function_signature = '70a08231' # Ethereum::Function.calc_id('balanceOf(address)') # 70a08231
         data = '0x' + function_signature + padding(account)
         to = token_contract_address
@@ -21,18 +21,18 @@ module TokenAdapter
       def sendtoaddress(address, amount, nonce = nil)
         # 生成raw transaction
         data = build_data(address, amount)
-        gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit 
-        gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
+        gas_limit = config[:transfer_gas_limit] || TokenAdapter::Bilur.transfer_gas_limit
+        gas_price = config[:transfer_gas_price] || TokenAdapter::Bilur.transfer_gas_price
         to = token_contract_address
 
-        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to, nonce: nonce)
+        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to)
         raise TxHashError, 'txhash is nil' unless txhash
         txhash
       end
 
       def generate_rawtx_with_nonce(address, amount, nonce, id = nil)
-        gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit
-        gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
+        gas_limit = config[:transfer_gas_limit] || TokenAdapter::Bilur.transfer_gas_limit
+        gas_price = config[:transfer_gas_price] || TokenAdapter::Bilur.transfer_gas_price
         data = build_data(address, amount)
         rawtx = generate_raw_transaction(from, nil, data, gas_limit, gas_price, token_contract_address, nonce)
         { method: 'eth_sendRawTransaction', params: [ rawtx ], id: id || 1 }
@@ -55,12 +55,12 @@ module TokenAdapter
 
         # 填充交易所需要的数据
         tx['details'] = [
-          {
-            'account' => 'payment',
-            'category' => 'receive',
-            'amount' => value.to_i(16) / 10.0**token_decimals,
-            'address' => "0x#{input[:params][0][24 .. input[:params][0].length-1]}"
-          }
+            {
+                'account' => 'payment',
+                'category' => 'receive',
+                'amount' => value.to_i(16) / 10.0**token_decimals,
+                'address' => "0x#{input[:params][0][24 .. input[:params][0].length-1]}"
+            }
         ]
 
         return tx
