@@ -26,10 +26,29 @@ module TokenAdapter
     end
 
     def gettransaction(txid)
-      if txid.length == 18 # 提币因为是异步的，所以这里只能是sn
-        result = http_get '/api/v1/withdrawals/' + txid
-        result['timereceived'] = result['created_at']
-        result
+      if txid.length < 32
+        if txid.start_with? 'w'
+          result = http_get '/api/v1/withdrawals/' + txid
+          return nil if result['error']
+
+          result['timereceived'] = result['created_at']
+          return result
+        elsif txid.start_with? 'd'
+          result = http_get '/api/v1/deposits/' + txid
+          return nil if result['error']
+
+          result['timereceived'] = result['created_at']
+          result['details'] = [
+              {
+                  'account' => 'payment',
+                  'category' => 'receive',
+                  'amount' => result['amount'],
+                  'address' => result['address']
+              }
+          ]
+        else
+          return nil
+        end
       else
         result = http_get '/api/v1/transactions/' + txid
         result['timereceived'] = result['blocktime']
