@@ -67,6 +67,20 @@ module TokenAdapter
       end
     end
 
+    def txid(txid)
+      if txid.start_with? 'w'
+        result = http_get '/api/v1/withdrawals/' + txid
+        return nil if result['error']
+        return result['txid']
+      elsif txid.start_with? 'd'
+        result = http_get '/api/v1/deposits/' + txid
+        return nil if result['error']
+        return result['txid']
+      else
+        return txid
+      end
+    end
+
     def validateaddress(address)
       {isvalid: true, ismine: false}
     end
