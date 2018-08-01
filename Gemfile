@@ -6,3 +6,4 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 gemspec
 
 # gem 'infura', path: '/Users/wuminzhe/Projects/huaxin/infura'
+gem 'garnet_client', '~> 0.1.2'
