@@ -27,4 +27,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "faraday", "~> 0.9.2"
   spec.add_dependency 'bip44', '~> 0.2.14'
   spec.add_dependency 'moac', '0.4.9'
+
+  spec.add_dependency 'garnet_client', '~> 0.1.2'
 end
