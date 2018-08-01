@@ -81,6 +81,10 @@ module TokenAdapter
       end
     end
 
+    def info
+      http_get '/api/v1/info'
+    end
+
     def validateaddress(address)
       {isvalid: true, ismine: false}
     end
