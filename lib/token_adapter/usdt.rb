@@ -14,8 +14,9 @@ module TokenAdapter
     end
 
     def getbalance(address = nil)
-      result = http_get '/api/v1/addresses/balance'
-      result['balance']
+      result = http_get '/api/v1/info'
+      return nil if result['error']
+      result.to_s
     end
     
     def sendtoaddress(address, amount)
