@@ -15,8 +15,7 @@ module TokenAdapter
 
     def getbalance(address = nil)
       result = http_get '/api/v1/info'
-      return nil if result['error']
-      result.to_s
+      "M:#{result['mainBalance']['btc']}฿, #{result['mainBalance']['usdt']} | F:#{result['tankBalance']}฿ | Balance:#{result['balance']}"
     end
     
     def sendtoaddress(address, amount)
