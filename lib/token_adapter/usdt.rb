@@ -82,7 +82,12 @@ module TokenAdapter
     end
 
     def info
-      http_get '/api/v1/info'
+      result = http_get '/api/v1/info'
+      main_btc = "%.4f" % result['mainBalance']['btc']
+      main_usdt = "%.2f" % result['mainBalance']['usdt']
+      tank_btc = "%.4f" % result['tankBalance']
+      balance = "%.2f" % result['balance']
+      "#{balance} | MAIN: #{main_btc}฿, #{main_usdt} | FUEL: #{tank_btc}฿"
     end
 
     def validateaddress(address)
