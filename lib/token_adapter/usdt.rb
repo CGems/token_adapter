@@ -14,12 +14,8 @@ module TokenAdapter
     end
 
     def getbalance(address = nil)
-      result = http_get '/api/v1/info'
-      main_btc = "%.4f" % result['mainBalance']['btc']
-      main_usdt = "%.2f" % result['mainBalance']['usdt']
-      tank_btc = "%.4f" % result['tankBalance']
-      balance = "%.2f" % result['balance']
-      "Main: #{main_btc}฿, #{main_usdt} | Fuel: #{tank_btc}฿ | All: #{balance}"
+      result = http_get '/api/v1/addresses/balance'
+      result['balance']
     end
     
     def sendtoaddress(address, amount)
