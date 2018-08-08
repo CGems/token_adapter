@@ -21,19 +21,24 @@ module TokenAdapter
       end
   
       def getnewaddress(index, passphrase)
-        xpub = TokenAdapter::Ethereum.xpub || config[:xpub]
-        wallet = Bip44::Wallet.from_xpub(xpub)
-        wallet.get_ethereum_address("M/#{index}")
+        # xpub = TokenAdapter::Ethereum.xpub || config[:xpub]
+        # wallet = Bip44::Wallet.from_xpub(xpub)
+        # wallet.get_ethereum_address("M/#{index}")
+        GarnetClient::Service.wallet_get_or_create_address('eth',index.to_s)
       end
 
       # 用户提币
       def sendtoaddress(address, amount, nonce = nil)
-        gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit
-        gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
+        # gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit
+        # gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
+        #
+        # txhash = send_transaction(from: from, value: amount, gas_limit: gas_limit, gas_price: gas_price, to: address, nonce: nonce)
+        value = (amount * 10**18).to_i
+        tx = GarnetClient::Service.tx_transfer('eth',nonce,nil, address, value)
+        rs = GarnetClient::Result.new(tx)
 
-        txhash = send_transaction(from: from, value: amount, gas_limit: gas_limit, gas_price: gas_price, to: address, nonce: nonce)
-        raise TxHashError, 'txhash is nil' unless txhash
-        txhash
+        raise TxHashError, 'txhash is nil' if rs.success?
+        tx[0]['result']['tx_id']
       end
 
       def generate_rawtx_with_nonce(address, amount, nonce, id = nil)

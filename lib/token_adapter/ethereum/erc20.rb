@@ -20,14 +20,22 @@ module TokenAdapter
       # 用户提币
       def sendtoaddress(address, amount, nonce = nil)
         # 生成raw transaction
-        data = build_data(address, amount)
-        gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit 
-        gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
-        to = token_contract_address
+        # data = build_data(address, amount)
+        # gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit
+        # gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
+        # to = token_contract_address
+        #
+        # txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to, nonce: nonce)
+        # raise TxHashError, 'txhash is nil' unless txhash
+        # txhash
+        amount_in_wei = (amount * (10**token_decimals)).to_i
+        coin = self.class.name.split('::').last.downcase
 
-        txhash = send_transaction(from: from, data: data, gas_limit: gas_limit, gas_price: gas_price, to: to, nonce: nonce)
-        raise TxHashError, 'txhash is nil' unless txhash
-        txhash
+        tx = GarnetClient::Service.tx_transfer(coin,nonce, nil, address, amount_in_wei)
+        rs = GarnetClient::Result.new(tx)
+
+        raise TxHashError, 'txhash is nil' if rs.success?
+        tx[0]['result']['tx_id']
       end
 
       def generate_rawtx_with_nonce(address, amount, nonce, id = nil)
@@ -55,12 +63,12 @@ module TokenAdapter
 
         # 填充交易所需要的数据
         tx['details'] = [
-          {
-            'account' => 'payment',
-            'category' => 'receive',
-            'amount' => value.to_i(16) / 10.0**token_decimals,
-            'address' => "0x#{input[:params][0][24 .. input[:params][0].length-1]}"
-          }
+            {
+                'account' => 'payment',
+                'category' => 'receive',
+                'amount' => value.to_i(16) / 10.0**token_decimals,
+                'address' => "0x#{input[:params][0][24 .. input[:params][0].length-1]}"
+            }
         ]
 
         return tx
