@@ -17,28 +17,47 @@ module TokenAdapter
       # 获取交易所的地址上币
       def getbalance(account = nil)
         account ||= (config[:exchange_address] || TokenAdapter::Ethereum.exchange_address)
-        get_balance(account)
+
+        tx = GarnetClient::Service.wallet_get_balance('eth',account)
+        result = tx[0]['result']['value']
+        BigDecimal(result.to_i) / BigDecimal(10**18)
       end
   
       def getnewaddress(index, passphrase)
-        # xpub = TokenAdapter::Ethereum.xpub || config[:xpub]
-        # wallet = Bip44::Wallet.from_xpub(xpub)
-        # wallet.get_ethereum_address("M/#{index}")
-        GarnetClient::Service.wallet_get_or_create_address('eth',index.to_s)
+        tx = GarnetClient::Service.wallet_get_or_create_address('eth',index.to_s)
+        tx[0]['result']['address']
       end
 
       # 用户提币
       def sendtoaddress(address, amount, nonce = nil)
-        # gas_limit = config[:transfer_gas_limit] || TokenAdapter::Ethereum.transfer_gas_limit
-        # gas_price = config[:transfer_gas_price] || TokenAdapter::Ethereum.transfer_gas_price
-        #
-        # txhash = send_transaction(from: from, value: amount, gas_limit: gas_limit, gas_price: gas_price, to: address, nonce: nonce)
         value = (amount * 10**18).to_i
         tx = GarnetClient::Service.tx_transfer('eth',nonce,nil, address, value)
         rs = GarnetClient::Result.new(tx)
 
-        raise TxHashError, 'txhash is nil' if rs.success?
+        raise TxHashError, 'txhash is nil' unless rs.success?
         tx[0]['result']['tx_id']
+      end
+
+      # 获取网关提币信息
+      def get_garnet_transaction(txid)
+        garnet_tx = GarnetClient::Service.tx_get_info('eth', txid)
+        rs = GarnetClient::Result.new(tx)
+        return nil unless rs.success?
+        tx = {}
+        tx['timereceived'] = garnet_tx[0]['result']['updatedAt'].to_i
+        tx['from'] = garnet_tx[0]['result']['from']
+        tx['tx_hash'] = garnet_tx[0]['result']['txHash']
+        tx['details'] = [
+            {
+                'account' => 'payment',
+                'category' => 'receive',
+                'amount' => tx[0]['result']['value'].to_i,
+                'address' => tx[0]['result']['to'],
+                'gas' => tx[0]['result']['gas'].to_i,
+                'gas_price' => tx[0]['result']['gasPrice'].to_i
+            }
+        ]
+        tx
       end
 
       def generate_rawtx_with_nonce(address, amount, nonce, id = nil)
