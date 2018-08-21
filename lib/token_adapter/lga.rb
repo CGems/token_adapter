@@ -10,13 +10,13 @@ module TokenAdapter
 
     def getbalance(address = nil)
       address ||= from
-      balance_info = fetch(method: 'omni_getbalance', params: [address, USDT_PROPERTY_ID])
+      balance_info = fetch(method: 'getbalance', params: [address])
       balance = balance_info['name'] == 'lgacoin' ? 0 : balance_info['qty']
       return balance
     end
 
     def getnewaddress(account, passphrase)
-      return fetch(method: 'getnewaddress', params: [''])
+      return fetch(method: 'getnewaddress', params: [])
     end
 
     def gettransaction(txid)
