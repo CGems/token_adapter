@@ -11,7 +11,8 @@ module TokenAdapter
     def getbalance(address = nil)
       address ||= from
       balance_info = fetch(method: 'getaddressbalances', params: [address])
-      balance = balance_info['name'] == 'lgacoin' ? 0 : balance_info['qty']
+      balance_info = balance_info.select {|item| item['name'] == 'lgacoin'}
+      balance = balance_info.size > 0 ? balance_info[0]['qty'] : 0
       return balance
     end
 
@@ -20,7 +21,7 @@ module TokenAdapter
     end
 
     def gettransaction(txid)
-      tx = fetch(method: 'getrawtransaction', params: [txid])
+      tx = fetch(method: 'getrawtransaction', params: [txid, 1])
       tx['timereceived'] = tx['blocktime'] || Time.now.to_i
       # 保持和btc返回结构一致
       details = []
@@ -41,13 +42,13 @@ module TokenAdapter
     end
 
     def sendtoaddress(address, amount)
-      txhash = fetch(method: 'sendassetfrom', params: [from, address, 'lgacoin', amount.to_s])
+      txhash = fetch(method: 'sendassetfrom', params: [from, address, 'lgacoin', BigDecimal(amount.to_s).to_f])
       raise TxHashError, 'txhash is nil' unless txhash
       txhash
     end
 
     def wallet_collect(address, amount)
-      txhash = fetch(method: 'sendassetfrom', params: [address, from, 'lgacoin', amount.to_s])
+      txhash = fetch(method: 'sendassetfrom', params: [address, from, 'lgacoin', BigDecimal(amount.to_s).to_f])
       raise TxHashError, 'txhash is nil' unless txhash
       txhash
     end
