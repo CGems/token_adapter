@@ -1,9 +1,9 @@
 module TokenAdapter
   module Ethereum
-    class Atm < Erc20
+    class Bb < Erc20
       def initialize(config)
         super(config)
-        @token_contract_address = '0x9B11EFcAAA1890f6eE52C6bB7CF8153aC5d74139'
+        @token_contract_address = '0xe4283e601fea362ab08bd90a0baba6a1d1875283'
         @token_decimals = 8
       end
     end
