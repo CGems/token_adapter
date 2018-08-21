@@ -10,7 +10,7 @@ module TokenAdapter
 
     def getbalance(address = nil)
       address ||= from
-      balance_info = fetch(method: 'getbalance', params: [address])
+      balance_info = fetch(method: 'getaddressbalances', params: [address])
       balance = balance_info['name'] == 'lgacoin' ? 0 : balance_info['qty']
       return balance
     end
@@ -41,13 +41,13 @@ module TokenAdapter
     end
 
     def sendtoaddress(address, amount)
-      txhash = fetch(method: 'sendassetfrom', params: [from, address, 'lgacoin', BigDecimal(amount)])
+      txhash = fetch(method: 'sendassetfrom', params: [from, address, 'lgacoin', amount.to_s])
       raise TxHashError, 'txhash is nil' unless txhash
       txhash
     end
 
     def wallet_collect(address, amount)
-      txhash = fetch(method: 'sendassetfrom', params: [address, from, 'lgacoin', BigDecimal(amount)])
+      txhash = fetch(method: 'sendassetfrom', params: [address, from, 'lgacoin', amount.to_s])
       raise TxHashError, 'txhash is nil' unless txhash
       txhash
     end
