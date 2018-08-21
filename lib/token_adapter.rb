@@ -60,6 +60,7 @@ require "token_adapter/ethereum/mxm"
 require "token_adapter/ethereum/wicc"
 require "token_adapter/ethereum/tba"
 require "token_adapter/ethereum/atn"
+require "token_adapter/ethereum/bb"
 
 
 
