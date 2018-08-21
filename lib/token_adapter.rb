@@ -60,6 +60,7 @@ require "token_adapter/ethereum/mxm"
 require "token_adapter/ethereum/wicc"
 require "token_adapter/ethereum/tba"
 require "token_adapter/ethereum/atn"
+require "token_adapter/ethereum/bb"
 
 
 
@@ -70,6 +71,7 @@ require "token_adapter/doge"
 require "token_adapter/usdt"
 require "token_adapter/sic"
 require "token_adapter/pai"
+require "token_adapter/lga"
 
 require "token_adapter/bilur/provider/rpc"
 require "token_adapter/bilur"
