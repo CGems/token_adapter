@@ -24,10 +24,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "minitest", "~> 5.0"
-  spec.add_development_dependency "garnet_client", "~> 0.1.2"
+  spec.add_development_dependency "garnet_client", "~> 0.1.11"
 
   spec.add_dependency "faraday", "~> 0.9.2"
   spec.add_dependency 'bip44', '~> 0.2.14'
   spec.add_dependency 'moac', '0.4.9'
-  spec.add_dependency 'garnet_client', '~> 0.1.10'
+  spec.add_dependency 'garnet_client', '~> 0.1.11'
 end
