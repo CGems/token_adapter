@@ -41,7 +41,7 @@ module TokenAdapter
       # 获取网关提币信息
       def get_garnet_transaction(txid)
         garnet_tx = GarnetClient::Service.tx_get_info('eth', txid)
-        rs = GarnetClient::Result.new(tx)
+        rs = GarnetClient::Result.new(garnet_tx)
         return nil unless rs.success?
         tx = {}
         tx['timereceived'] = garnet_tx[0]['result']['updatedAt'].to_i
