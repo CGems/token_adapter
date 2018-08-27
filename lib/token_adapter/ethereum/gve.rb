@@ -3,7 +3,7 @@ module TokenAdapter
     class Gve < Erc20
       def initialize(config)
         super(config)
-        @token_contract_address = '0x81705082ef9f0d660f07be80093d46d826d48b25'
+        @token_contract_address = '0x7421eeb947c7bbabab27aeac6ee2f327e2917cb'
         @token_decimals = 18
       end
     end
