@@ -51,10 +51,10 @@ module TokenAdapter
             {
                 'account' => 'payment',
                 'category' => 'receive',
-                'amount' => tx[0]['result']['value'].to_i,
-                'address' => tx[0]['result']['to'],
-                'gas' => tx[0]['result']['gas'].to_i,
-                'gas_price' => tx[0]['result']['gasPrice'].to_i
+                'amount' => garnet_tx[0]['result']['value'].to_i,
+                'address' => garnet_tx[0]['result']['to'],
+                'gas' => garnet_tx[0]['result']['gas'].to_i,
+                'gas_price' => garnet_tx[0]['result']['gasPrice'].to_i
             }
         ]
         tx
