@@ -3,8 +3,8 @@ module TokenAdapter
     class Bb < Erc20
       def initialize(config)
         super(config)
-        @token_contract_address = '0xe4283e601fea362ab08bd90a0baba6a1d1875283'
-        @token_decimals = 8
+        @token_contract_address = '0x0605dd524bdbe8c3edde6ebe59600011328243d9'
+        @token_decimals = 18
       end
     end
   end
