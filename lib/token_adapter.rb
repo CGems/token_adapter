@@ -61,7 +61,7 @@ require "token_adapter/ethereum/wicc"
 require "token_adapter/ethereum/tba"
 require "token_adapter/ethereum/atn"
 require "token_adapter/ethereum/bb"
-
+require "token_adapter/ethereum/kbi"
 
 
 require "token_adapter/btc"
