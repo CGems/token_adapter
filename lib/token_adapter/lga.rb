@@ -9,8 +9,11 @@ module TokenAdapter
     end
 
     def getbalance(address = nil)
-      address ||= from
-      balance_info = fetch(method: 'getaddressbalances', params: [address])
+      if address == nil
+        balance_info = fetch(method: 'gettotalbalances', params: [])
+      else
+        balance_info = fetch(method: 'getaddressbalances', params: [address])
+      end
       balance_info = balance_info.select {|item| item['name'] == 'lgacoin'}
       balance = balance_info.size > 0 ? balance_info[0]['qty'] : 0
       return balance
