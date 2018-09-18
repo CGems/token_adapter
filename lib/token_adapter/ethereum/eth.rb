@@ -151,8 +151,6 @@ module TokenAdapter
         tx.hex
       end
 
-      private
-
       def from
         exchange_address_priv = config[:exchange_address_priv] || TokenAdapter::Ethereum.exchange_address_priv
         exchange_address = config[:exchange_address] || TokenAdapter::Ethereum.exchange_address
