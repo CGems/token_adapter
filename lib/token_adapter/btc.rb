@@ -26,7 +26,7 @@ module TokenAdapter
       if address
         utxos = fetch(method: 'listunspent', params: [])
         utxos.reduce(0) do |sum, utxo|
-          if utxo['address'] == address
+          if utxo['address'] == address and utxo['spendable']
             sum + utxo['amount']
           else
             sum
