@@ -77,6 +77,7 @@ require "token_adapter/bilur/erc40"
 require "token_adapter/bilur/mox"
 require "token_adapter/bilur/nzh"
 require "token_adapter/bilur/cmx"
+require "token_adapter/bilur/rst"
 
 require "token_adapter/moac/provider/rpc"
 require "token_adapter/moac"
