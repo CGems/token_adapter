@@ -1,9 +1,9 @@
 module TokenAdapter
-  module Bilur
-    class Rst < Erc40
+  module Ethereum
+    class Rst < Erc20
       def initialize(config)
         super(config)
-        @token_contract_address = '0xc4f86469d90a13d70e5142f9cd1df5b6abd53120'
+        @token_contract_address = '0x8c01722fc426841e7f508d2aadc9678b79228281'
         @token_decimals = 8
       end
     end
